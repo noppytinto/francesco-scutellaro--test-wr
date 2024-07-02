@@ -20,6 +20,7 @@
         fit="cover"
         class="absolute left-0 top-0 w-[40px] -translate-x-1/2 -translate-y-1/4 rounded-full border-4 border-white"
         loading="lazy"
+        crossorigin="anonymous"
       />
       <NuxtImg
         :src="booking.travel.thumbnail"
@@ -27,6 +28,7 @@
         fit="cover"
         class="aspect-square h-[80px] w-[80px] min-w-[80px] rounded-lg"
         loading="lazy"
+        crossorigin="anonymous"
       />
     </div>
   </article>

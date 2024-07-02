@@ -9,6 +9,7 @@
         fit="cover"
         class="h-[200px] w-[200px]"
         loading="lazy"
+        crossorigin="anonymous"
       />
       <p class="absolute bottom-0 p-3 text-white">
         {{ durationInDays }}

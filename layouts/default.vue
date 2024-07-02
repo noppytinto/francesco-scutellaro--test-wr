@@ -6,7 +6,12 @@
     >
       <!--================================================== LOGO -->
       <div class="flex items-center justify-between">
-        <NuxtImg src="images/weroad-logo-expanded.svg" alt="logo" width="100" />
+        <NuxtImg
+          src="images/weroad-logo-expanded.svg"
+          alt="logo"
+          width="100"
+          crossorigin="anonymous"
+        />
         <button>
           <FontAwesomeIcon
             icon="window-maximize"
