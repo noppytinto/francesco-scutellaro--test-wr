@@ -15,7 +15,7 @@
     </div>
 
     <!--================================================== NAVIGATION -->
-    <nav>
+    <nav class="sticky top-0 py-5">
       <h1 class="text-sm text-my-neutral-300">Main menu</h1>
       <ul class="flex flex-col gap-1">
         <li>

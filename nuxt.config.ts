@@ -8,6 +8,10 @@ export default defineNuxtConfig({
     "~/assets/style/main.scss",
     "@fortawesome/fontawesome-svg-core/styles.css",
   ],
+  app: {
+    pageTransition: { name: "page", mode: "out-in" },
+    layoutTransition: { name: "layout", mode: "out-in" },
+  },
   postcss: {
     plugins: {
       tailwindcss: {},
