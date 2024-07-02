@@ -1,11 +1,11 @@
 <template>
-  <div class="flex gap-4 h-dvh">
+  <div class="flex h-dvh gap-4">
     <!--================================================== SIDEBAR -->
     <div
-      class="flex flex-col gap-14 grow max-w-60 border-my-neutral-100 border-r p-4"
+      class="flex min-w-[250px] max-w-[250px] flex-col gap-14 border-r border-my-neutral-100 p-4"
     >
       <!--================================================== LOGO -->
-      <div class="flex justify-between items-center">
+      <div class="flex items-center justify-between">
         <NuxtImg src="images/weroad-logo-expanded.svg" alt="logo" width="100" />
         <button>
           <FontAwesomeIcon
@@ -42,21 +42,26 @@
     </div>
 
     <!--================================================== RIGHT CONTENT -->
-    <div class="grow p-4">
+    <div class="flex grow flex-col gap-10 p-4">
       <!--================================================== HEADER -->
-      <header class="flex justify-between items-center">
-        <h1 class="text-2xl font-bold mb-4 text-my-neutral-300">
+      <header class="flex items-center justify-between">
+        <h1 class="text-2xl font-bold text-my-neutral-300">
           {{ $route.meta.title }}
         </h1>
 
         <!--================================================== AVATAR -->
-        <div class="flex items-center gap-4">
-          <p>John Doe</p>
+        <div
+          class="flex items-center gap-2.5 rounded border border-my-neutral-300 px-2 py-1.5"
+        >
           <img
-            src="https://randomuser.me/api/portraits"
+            src="https://randomuser.me/api/portraits/men/1.jpg"
             alt="avatar"
-            class="w-12 h-12 rounded-full"
+            class="w-7 rounded-full"
           />
+          <p class="font-semibold">John Doe</p>
+          <button>
+            <FontAwesomeIcon icon="chevron-down" class="text-secondary" />
+          </button>
         </div>
       </header>
 
