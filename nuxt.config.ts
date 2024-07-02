@@ -11,6 +11,9 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
-
+  image: {
+    provider: "netlify",
+    domains: ["https://images.unsplash.com", "https://randomuser.me"],
+  },
   modules: ["@nuxt/image"],
 });
