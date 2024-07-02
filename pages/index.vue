@@ -4,4 +4,9 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+definePageMeta({
+  title: "Dashboard",
+  description: "This is the hello page",
+});
+</script>
