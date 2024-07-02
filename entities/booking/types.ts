@@ -3,15 +3,15 @@ import type { User } from "~/entities/user/types";
 import { getMockedUsers } from "~/entities/user/types";
 import { getMockedTravels } from "~/entities/travel/types";
 
+type PaymentMethod = "Credit transfer" | "Paypal" | "Revolut";
+
 type APIBooking = {
   id: string;
   travel_id: string;
   customer_id: string;
-  payment_method: string;
+  payment_method: PaymentMethod;
   internal_notes?: string;
 };
-
-type PaymentMethod = "Credit Transfer" | "Paypal" | "Revolut";
 
 export type Booking = {
   id: string;
@@ -51,9 +51,9 @@ export function getMockedBookings(): Booking[] {
 const mockedBookings: APIBooking[] = [
   {
     id: "1",
-    travel_id: "1",
+    travel_id: "8",
     customer_id: "1",
-    payment_method: "Credit Transfer",
+    payment_method: "Credit transfer",
     internal_notes: "No allergies",
   },
   {
@@ -64,7 +64,7 @@ const mockedBookings: APIBooking[] = [
   },
   {
     id: "3",
-    travel_id: "3",
+    travel_id: "1",
     customer_id: "2",
     payment_method: "Revolut",
     internal_notes: "Vegetarian",
@@ -73,7 +73,7 @@ const mockedBookings: APIBooking[] = [
     id: "4",
     travel_id: "7",
     customer_id: "4",
-    payment_method: "Credit Transfer",
+    payment_method: "Credit transfer",
   },
   {
     id: "5",

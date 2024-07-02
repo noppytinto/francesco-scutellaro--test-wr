@@ -9,7 +9,7 @@
       <p class="line-clamp-1 text-sm text-my-neutral-300">
         {{ booking.travel.name }}
       </p>
-      <p class="text-sm font-semibold text-my-neutral-300">
+      <p class="line-clamp-1 text-sm font-semibold text-my-neutral-300">
         {{ booking.paymentMethod }}
       </p>
     </div>
@@ -18,7 +18,7 @@
         :src="booking.customer.profilePicture"
         :alt="booking.customer.firstName"
         fit="cover"
-        class="absolute left-0 top-0 w-[40px] -translate-x-1/2 -translate-y-1/4 rounded-full border-4 border-white"
+        class="absolute left-0 top-0 w-[40px] -translate-x-1/2 -translate-y-1/4 rounded-full border-4 border-white shadow-lg"
         loading="lazy"
       />
       <NuxtImg

@@ -15,6 +15,7 @@ export default {
         secondary: "#4D4D4D",
         tertiary: "#418089",
         "my-blue-100": "#F6F8FE",
+        "my-neutral-50": "#F5F5F5",
         "my-neutral-100": "#DFDFDF",
         "my-neutral-300": "#999999",
       },

@@ -4,10 +4,15 @@
       <h2 class="text-2xl font-bold">
         {{ title }}
       </h2>
-      <NuxtLink v-if="seeAllLink" :to="seeAllLink" class="text-sm underline">
+      <NuxtLink
+        v-if="seeAllLink"
+        :to="seeAllLink"
+        class="text-sm underline transition-colors duration-100 ease-in-out hover:text-primary"
+      >
         see all
       </NuxtLink>
     </header>
+
     <slot />
   </section>
 </template>
