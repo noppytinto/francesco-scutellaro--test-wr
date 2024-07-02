@@ -1,5 +1,5 @@
 <template>
-  <div class="flex gap-4">
+  <div class="flex min-h-dvh gap-4">
     <Sidebar />
 
     <div class="flex grow flex-col gap-10 p-4">
