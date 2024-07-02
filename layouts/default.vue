@@ -2,7 +2,7 @@
   <div class="flex h-dvh gap-4">
     <!--================================================== SIDEBAR -->
     <div
-      class="flex min-w-[250px] max-w-[250px] flex-col gap-14 border-r border-my-neutral-100 p-4"
+      class="flex min-w-[250px] max-w-[250px] flex-col gap-10 border-r border-my-neutral-100 p-4"
     >
       <!--================================================== LOGO -->
       <div class="flex items-center justify-between">
@@ -18,7 +18,7 @@
 
       <!--================================================== NAVIGATION -->
       <nav>
-        <h1 class="text-my-neutral-300">Main menu</h1>
+        <h1 class="text-sm text-my-neutral-300">Main menu</h1>
         <ul class="flex flex-col gap-1">
           <li>
             <NavigationLink to="/" title="Dashboard" icon="house" />

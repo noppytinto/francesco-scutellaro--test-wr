@@ -2,7 +2,7 @@
   <div class="flex flex-col gap-14">
     <DashboardSection title="Recent bookings" seeAllLink="/bookings">
       <ul
-        class="grid grid-cols-1 grid-rows-2 gap-14 md:grid-cols-2 md:grid-rows-2 lg:grid-cols-3 lg:grid-rows-1"
+        class="grid grid-cols-1 grid-rows-2 gap-14 md:grid-cols-2 md:grid-rows-2 lg:grid-cols-3 lg:grid-rows-1 xl:grid-cols-4"
       >
         <li v-for="booking in bookings" :key="booking.id">
           <BookingCard :booking="booking" />
@@ -10,7 +10,9 @@
       </ul>
     </DashboardSection>
     <DashboardSection title="Latest added travels" seeAllLink="/travels">
-      <ul class="flex flex-wrap gap-14">
+      <ul
+        class="grid grid-cols-1 grid-rows-2 gap-14 md:grid-cols-2 md:grid-rows-1 lg:grid-cols-3 lg:grid-rows-1 xl:grid-cols-4 xl:grid-rows-1 2xl:grid-cols-5"
+      >
         <li v-for="travel in travels" :key="travel.id">
           <TravelCard :travel="travel" />
         </li>
