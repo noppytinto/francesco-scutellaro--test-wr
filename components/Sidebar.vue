@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-my-neutral-200 flex min-h-full min-w-[250px] flex-col gap-10 border-r border-my-neutral-100 p-4 transition-all duration-100"
+    class="bg-my-neutral-200 flex min-h-full min-w-[250px] flex-col gap-4 border-r border-my-neutral-100 p-4 transition-all duration-100"
     ref="sidebar"
   >
     <!--================================================== LOGO -->
@@ -36,12 +36,7 @@
 
     <!--================================================== NAVIGATION -->
     <nav class="sticky top-0 py-5">
-      <h1
-        v-if="!isCollapsed"
-        class="text-sm text-my-neutral-300 max-[200px]:hidden"
-      >
-        Main menu
-      </h1>
+      <h1 v-if="!isCollapsed" class="text-sm text-my-neutral-300">Main menu</h1>
       <ul
         class="flex flex-col gap-1"
         :class="{

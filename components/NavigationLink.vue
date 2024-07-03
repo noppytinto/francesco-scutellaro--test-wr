@@ -1,7 +1,7 @@
 <template>
   <NuxtLink :to>
     <div
-      class="flex items-center gap-1 rounded-md py-2 text-secondary transition-all duration-150 hover:bg-my-neutral-100 max-[200px]:justify-center"
+      class="flex items-center gap-1 rounded-md py-2 text-secondary transition-all duration-150 hover:bg-my-neutral-100"
       :class="{
         'justify-center': !title,
       }"
