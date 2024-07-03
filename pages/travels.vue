@@ -1,7 +1,13 @@
 <template>
   <div>
     <TableActions class="mb-4">
-      <SearchInput class="max-w-96 grow" v-model="searchValue" />
+      <MyInput
+        type="search"
+        placeholder="search"
+        icon="magnifying-glass"
+        class="max-w-96 grow"
+        v-model="searchValue"
+      />
       <MyButton icon="plus"> Add Travel </MyButton>
     </TableActions>
     <!--======== travels table ========-->
@@ -45,13 +51,13 @@
 </template>
 
 <script setup lang="ts">
-import SearchInput from "~/components/inputs/SearchInput.vue";
 import { getMockedTravels, type Travel } from "~/entities/travel/types";
 import { formatDate } from "compatx";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import TableData from "~/components/Table/TableData.vue";
 import MyTable from "~/components/Table/MyTable.vue";
 import TableActions from "~/components/Table/TableActions.vue";
+import MyInput from "~/components/inputs/MyInput.vue";
 
 definePageMeta({
   title: "Travels",

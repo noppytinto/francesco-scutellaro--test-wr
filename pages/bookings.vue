@@ -1,7 +1,13 @@
 <template>
   <div>
     <TableActions class="mb-4">
-      <SearchInput class="max-w-96 grow" v-model="searchValue" />
+      <MyInput
+        type="search"
+        placeholder="search"
+        icon="magnifying-glass"
+        class="max-w-96 grow"
+        v-model="searchValue"
+      />
       <MyButton icon="plus"> Add Booking </MyButton>
     </TableActions>
 
@@ -37,11 +43,12 @@
 
 <script setup lang="ts">
 import MyTable from "~/components/Table/MyTable.vue";
-import SearchInput from "~/components/inputs/SearchInput.vue";
+import SearchInput from "~/components/inputs/MyInput.vue";
 import TableData from "~/components/Table/TableData.vue";
 import { type Booking, getMockedBookings } from "~/entities/booking/types";
 import PaymentTag from "~/components/inputs/PaymentTag.vue";
 import TableActions from "~/components/Table/TableActions.vue";
+import MyInput from "~/components/inputs/MyInput.vue";
 
 definePageMeta({
   title: "Bookings",
