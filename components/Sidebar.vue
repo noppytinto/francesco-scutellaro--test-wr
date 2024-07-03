@@ -4,7 +4,7 @@
   >
     <!--================================================== LOGO -->
     <div class="flex items-center justify-between">
-      <MyImg src="images/weroad-logo-expanded.svg" alt="logo" width="100" />
+      <MyImg src="images/weroad-logo-expanded.svg" alt="logo" width="65" />
       <button>
         <FontAwesomeIcon
           icon="window-maximize"
