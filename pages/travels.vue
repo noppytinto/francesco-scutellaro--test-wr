@@ -151,29 +151,21 @@ const travelForm = ref<HTMLFormElement | null>(null);
 const isCreating = ref(false);
 const clickedTravel = ref<Travel | null>(null);
 
-// convert date to YYYY-MM-DD format
-function formatDate(date: Date | undefined) {
-  if (!date) return "";
-  return date.toISOString().split("T")[0];
-}
-
 onMounted(() => {
   travels.value = getMockedTravels();
 });
 
-const handleRowClick = (travel: Travel) => {
+// ====================================================
+// FUNCTIONS
+// ====================================================
+
+function handleRowClick(travel: Travel) {
   isModalOpen.value = true;
   isCreating.value = false;
   travelForm.value?.reset();
-
-  console.log(
-    "fffffffffffffffffffffffffffffffffffffffffff clickedTravel:",
-    toRaw(travel),
-  );
-
   thumbnailUrl.value = travel.thumbnailURL;
   clickedTravel.value = toRaw(travel);
-};
+}
 
 function handleSubmit() {
   isModalOpen.value = false;
@@ -226,6 +218,16 @@ function updateTravel() {
 
   travels.value[index] = updatedTravel;
 }
+
+// convert date to YYYY-MM-DD format
+function formatDate(date: Date | undefined) {
+  if (!date) return "";
+  return date.toISOString().split("T")[0];
+}
+
+// ====================================================
+// WATCHERS
+// ====================================================
 
 watch(searchValue, (value) => {
   // reset the table if the search value is empty
