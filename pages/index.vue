@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col gap-16 pb-20">
-    <div class="flex items-end gap-10">
+    <div class="flex flex-wrap items-end gap-10">
       <DashboardWidget title="Total revenue" :data-value="totalRevenue" />
       <DashboardWidget
         title="travels"
