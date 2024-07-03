@@ -3,7 +3,7 @@ import type { User } from "~/entities/user/types";
 import { getMockedUsers } from "~/entities/user/types";
 import { getMockedTravels } from "~/entities/travel/types";
 
-type PaymentMethod = "Credit transfer" | "Paypal" | "Revolut";
+export type PaymentMethod = "Credit transfer" | "Paypal" | "Revolut";
 
 type APIBooking = {
   id: string;

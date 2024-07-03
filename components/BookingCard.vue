@@ -9,8 +9,8 @@
       <p class="line-clamp-1 text-sm text-my-neutral-300">
         {{ booking.travel.name }}
       </p>
-      <p class="line-clamp-1 text-sm font-semibold text-my-neutral-300">
-        {{ booking.paymentMethod }}
+      <p class="line-clamp-1">
+        <PaymentTag :paymentMethod="booking.paymentMethod" />
       </p>
     </div>
     <div class="relative">
@@ -35,6 +35,7 @@
 <script setup lang="ts">
 import type { Booking } from "~/entities/booking/types";
 import MyImg from "~/components/MyImg.vue";
+import PaymentTag from "~/components/inputs/PaymentTag.vue";
 
 type Props = {
   booking: Booking;
