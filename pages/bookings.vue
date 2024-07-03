@@ -1,6 +1,9 @@
 <template>
   <div>
-    <SearchInput class="mb-4 max-w-80" v-model="searchValue" />
+    <TableActions class="mb-4">
+      <SearchInput class="max-w-96 grow" v-model="searchValue" />
+      <MyButton icon="plus"> Add Booking </MyButton>
+    </TableActions>
 
     <!--======== travels table ========-->
     <MyTable :headers :data="bookings" row-class="cursor-pointer">
@@ -38,6 +41,7 @@ import SearchInput from "~/components/inputs/SearchInput.vue";
 import TableData from "~/components/Table/TableData.vue";
 import { type Booking, getMockedBookings } from "~/entities/booking/types";
 import PaymentTag from "~/components/inputs/PaymentTag.vue";
+import TableActions from "~/components/Table/TableActions.vue";
 
 definePageMeta({
   title: "Bookings",

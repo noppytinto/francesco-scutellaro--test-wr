@@ -1,7 +1,9 @@
 <template>
   <div>
-    <SearchInput class="mb-4 max-w-80" v-model="searchValue" />
-
+    <TableActions class="mb-4">
+      <SearchInput class="max-w-96 grow" v-model="searchValue" />
+      <MyButton icon="plus"> Add Travel </MyButton>
+    </TableActions>
     <!--======== travels table ========-->
     <MyTable :headers :data="travels" row-class="cursor-pointer">
       <template #default="{ value: travel }">
@@ -49,6 +51,7 @@ import { formatDate } from "compatx";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import TableData from "~/components/Table/TableData.vue";
 import MyTable from "~/components/Table/MyTable.vue";
+import TableActions from "~/components/Table/TableActions.vue";
 
 definePageMeta({
   title: "Travels",

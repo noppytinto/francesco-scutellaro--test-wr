@@ -1,7 +1,7 @@
 <template>
-  <article class="flex flex-col gap-1">
+  <article class="flex flex-col gap-3">
     <div
-      class="before:from-3% relative w-max overflow-hidden rounded-lg shadow-lg before:absolute before:h-full before:w-full before:bg-gradient-to-t before:from-neutral-950 before:to-transparent before:to-30%"
+      class="before:from-3% relative w-max overflow-hidden rounded-lg shadow-md before:absolute before:h-full before:w-full before:bg-gradient-to-t before:from-neutral-950 before:to-transparent before:to-30%"
     >
       <MyImg
         :src="travel.thumbnail"
