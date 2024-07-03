@@ -14,25 +14,19 @@
       </p>
     </div>
     <div class="relative">
-      <NuxtImg
+      <MyImg
         :src="booking.customer.profilePicture"
         :alt="booking.customer.firstName"
-        fit="cover"
         width="40"
         height="40"
         class="absolute left-0 top-0 -translate-x-1/2 -translate-y-1/4 rounded-full border-4 border-white shadow-lg"
-        loading="lazy"
-        :placeholder="[5, 5, 75, 5]"
       />
-      <NuxtImg
+      <MyImg
         :src="booking.travel.thumbnail"
         :alt="booking.travel.name"
-        fit="cover"
         width="80"
         height="80"
         class="aspect-square min-w-[80px] rounded-lg"
-        loading="lazy"
-        :placeholder="[10, 10, 75, 5]"
       />
     </div>
   </article>
@@ -40,6 +34,7 @@
 
 <script setup lang="ts">
 import type { Booking } from "~/entities/booking/types";
+import MyImg from "~/components/MyImg.vue";
 
 type Props = {
   booking: Booking;

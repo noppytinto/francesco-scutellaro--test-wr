@@ -3,14 +3,11 @@
     <div
       class="before:from-3% relative w-max overflow-hidden rounded-lg shadow-lg before:absolute before:h-full before:w-full before:bg-gradient-to-t before:from-neutral-950 before:to-transparent before:to-30%"
     >
-      <NuxtImg
+      <MyImg
         :src="travel.thumbnail"
         :alt="travel.name"
-        fit="cover"
         width="200"
         height="200"
-        loading="lazy"
-        :placeholder="[20, 20, 75, 5]"
       />
       <p class="absolute bottom-0 p-3 text-white">
         {{ durationInDays }}
@@ -30,6 +27,7 @@
 
 <script setup lang="ts">
 import type { Travel } from "~/entities/travel/types";
+import MyImg from "~/components/MyImg.vue";
 
 type Props = {
   travel: Travel;
