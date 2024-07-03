@@ -1,7 +1,7 @@
 <template>
   <NuxtLink :to>
     <div
-      class="flex items-center gap-1 rounded-md py-2 text-secondary transition-all duration-150 hover:bg-my-neutral-100"
+      class="flex items-center gap-1 rounded-md py-2 text-secondary transition-colors hover:bg-my-neutral-100"
       :class="{
         'justify-center': !title,
         'bg-my-neutral-50': $route.path === to,

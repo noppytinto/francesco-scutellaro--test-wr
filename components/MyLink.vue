@@ -1,8 +1,5 @@
 <template>
-  <NuxtLink
-    :to
-    class="underline transition-colors duration-100 ease-in-out hover:text-primary"
-  >
+  <NuxtLink :to class="underline transition-colors hover:text-primary">
     <slot />
   </NuxtLink>
 </template>

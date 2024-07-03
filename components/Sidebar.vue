@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-my-neutral-200 flex min-h-full min-w-[250px] flex-col gap-4 border-r border-my-neutral-100 p-4 transition-all duration-100"
+    class="bg-my-neutral-200 flex min-h-full min-w-[250px] flex-col gap-4 border-r border-my-neutral-100 p-4 transition-all duration-200"
     ref="sidebar"
   >
     <!--================================================== LOGO -->
@@ -25,11 +25,12 @@
       <button @click="handleClickCollapse">
         <FontAwesomeIcon
           :icon="isCollapsed ? 'far fa-window-maximize' : 'window-maximize'"
-          class="text-secondary"
           rotation="270"
-          :class="{
-            'text-my-neutral-100': isCollapsed,
-          }"
+          :class="[
+            isCollapsed
+              ? 'text-my-neutral-100 transition-colors hover:text-my-neutral-300'
+              : 'text-my-neutral-300',
+          ]"
         />
       </button>
     </div>

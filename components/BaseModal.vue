@@ -6,7 +6,7 @@
       @click="handleClickOutside"
     >
       <div
-        class="flex min-h-96 w-full flex-col justify-between gap-8 rounded-md bg-white p-5 sm:w-1/2"
+        class="flex min-h-96 w-full flex-col justify-between gap-8 rounded-md bg-white p-5 shadow-lg sm:w-9/12 xl:w-2/5"
         @click.stop
       >
         <header
@@ -17,7 +17,7 @@
             <FontAwesomeIcon
               icon="xmark"
               size="xl"
-              class="cursor-pointer text-my-neutral-300 transition-colors duration-200 hover:text-primary"
+              class="cursor-pointer text-my-neutral-300 transition-colors hover:text-primary"
             />
           </button>
         </header>

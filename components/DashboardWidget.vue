@@ -1,6 +1,6 @@
 <template>
   <article
-    class="bg-my-neutral-50 flex flex-col rounded-md px-6 py-4 transition-shadow duration-200 hover:shadow-lg"
+    class="flex flex-col rounded-md bg-my-neutral-50 px-6 py-4 transition-shadow hover:shadow-lg"
   >
     <h1 class="text-my-neutral-900 font-bold" :class="titleClasses">
       {{ title }}

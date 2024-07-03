@@ -15,7 +15,7 @@
       <tr
         v-for="value in data"
         :key="value.id"
-        class="border-b border-my-neutral-100 transition-colors duration-200 ease-in-out hover:bg-my-neutral-50"
+        class="border-b border-my-neutral-100 transition-colors hover:bg-my-neutral-50"
         :class="rowClass"
         @click="$emit('row-click', value)"
       >
