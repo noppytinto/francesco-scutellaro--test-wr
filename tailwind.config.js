@@ -19,6 +19,16 @@ export default {
         "my-neutral-100": "#DFDFDF",
         "my-neutral-300": "#999999",
       },
+
+      animation: {
+        fade: "fadeIn 150ms ease-out",
+      },
+      keyframes: (theme) => ({
+        fadeIn: {
+          "1000%": { backgroundColor: theme("colors.neutral.400") },
+          "0%": { backgroundColor: theme("colors.transparent") },
+        },
+      }),
     },
   },
   plugins: [],

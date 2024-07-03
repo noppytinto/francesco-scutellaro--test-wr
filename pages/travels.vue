@@ -11,7 +11,12 @@
       <MyButton icon="plus"> Add Travel </MyButton>
     </TableActions>
     <!--======== travels table ========-->
-    <MyTable :headers :data="travels" row-class="cursor-pointer">
+    <MyTable
+      :headers
+      :data="travels"
+      row-class="cursor-pointer"
+      @row-click="handleRowClick"
+    >
       <template #default="{ value: travel }">
         <TableData>{{ travel.name }}</TableData>
         <TableData>
@@ -47,6 +52,17 @@
         </TableData>
       </template>
     </MyTable>
+
+    <BaseModal title="Test" v-model:open="isModalOpen">
+      <template #default>
+        <p>Modal content</p>
+      </template>
+
+      <template #actions>
+        <MyButton variant="text" @click="isModalOpen = false">Cancel</MyButton>
+        <MyButton>Save</MyButton>
+      </template>
+    </BaseModal>
   </div>
 </template>
 
@@ -77,10 +93,15 @@ const headers = [
 
 const travels = ref<Travel[]>([]);
 const searchValue = ref("");
+const isModalOpen = ref(false);
 
 onMounted(() => {
   travels.value = getMockedTravels();
 });
+
+const handleRowClick = (travel: Travel) => {
+  isModalOpen.value = true;
+};
 
 watch(searchValue, (value) => {
   // reset the table if the search value is empty
