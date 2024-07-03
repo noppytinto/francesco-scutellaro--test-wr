@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-my-neutral-200 flex h-screen min-w-[250px] flex-col gap-10 overflow-y-auto border-r border-my-neutral-100 p-4 transition-all duration-100"
+    class="bg-my-neutral-200 flex min-h-full min-w-[250px] flex-col gap-10 border-r border-my-neutral-100 p-4 transition-all duration-100"
     ref="sidebar"
   >
     <!--================================================== LOGO -->
