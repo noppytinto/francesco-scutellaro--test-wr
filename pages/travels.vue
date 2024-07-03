@@ -87,12 +87,7 @@
             />
           </MyLabel>
           <MyLabel text="Thumbnail URL" class="mb-4">
-            <MyInput
-              name="thumbnail"
-              type="url"
-              v-model="thumbnailUrl"
-              required
-            >
+            <MyInput name="thumbnail" type="url" v-model="thumbnailUrl">
               <template #append>
                 <MyImg
                   v-if="thumbnailUrl"
@@ -100,6 +95,7 @@
                   alt="thumbnail"
                   width="80"
                   class="m-2 aspect-square rounded transition-transform hover:scale-150"
+                  placeholder=""
                 />
               </template>
             </MyInput>
@@ -167,8 +163,8 @@ onMounted(() => {
 
 const handleRowClick = (travel: Travel) => {
   isModalOpen.value = true;
-  thumbnailUrl.value = "";
   isCreating.value = false;
+  travelForm.value?.reset();
 
   console.log(
     "fffffffffffffffffffffffffffffffffffffffffff clickedTravel:",
@@ -190,6 +186,9 @@ function handleSubmit() {
 }
 
 function handleAddTravel() {
+  clickedTravel.value = null;
+  thumbnailUrl.value = "";
+  travelForm.value?.reset();
   isModalOpen.value = true;
   isCreating.value = true;
 }
