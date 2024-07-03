@@ -4,13 +4,9 @@
       <h2 class="text-2xl font-bold">
         {{ title }}
       </h2>
-      <NuxtLink
-        v-if="seeAllLink"
-        :to="seeAllLink"
-        class="text-sm underline transition-colors duration-100 ease-in-out hover:text-primary"
-      >
+      <MyLink v-if="seeAllLink" :to="seeAllLink" class="text-sm">
         see all
-      </NuxtLink>
+      </MyLink>
     </header>
 
     <slot />
@@ -18,6 +14,8 @@
 </template>
 
 <script setup lang="ts">
+import MyLink from "~/components/MyLink.vue";
+
 type Props = {
   title: string;
   seeAllLink?: string;

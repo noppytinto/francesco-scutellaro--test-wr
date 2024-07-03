@@ -1,7 +1,7 @@
 <template>
   <NuxtLink :to>
     <div
-      class="flex items-center gap-1 text-secondary py-2 rounded-md hover:bg-my-neutral-100 transition-all duration-150"
+      class="flex items-center gap-1 rounded-md py-2 text-secondary transition-all duration-150 hover:bg-my-neutral-100"
     >
       <FontAwesomeIcon
         :icon
