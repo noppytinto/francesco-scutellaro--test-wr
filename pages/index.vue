@@ -16,9 +16,9 @@
 
     <DashboardSection title="Recent bookings" seeAllLink="/bookings">
       <ul
-        class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+        class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-5"
       >
-        <li v-for="booking in bookings?.slice(0, 4)" :key="booking.id">
+        <li v-for="booking in bookings?.slice(0, 5)" :key="booking.id">
           <BookingCard :booking="booking" />
         </li>
       </ul>
@@ -26,9 +26,9 @@
 
     <DashboardSection title="Latest added travels" seeAllLink="/travels">
       <ul
-        class="grid grid-cols-1 gap-14 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5"
+        class="grid grid-cols-1 gap-14 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-7"
       >
-        <li v-for="travel in travels?.slice(0, 5)" :key="travel.id">
+        <li v-for="travel in travels?.slice(0, 6)" :key="travel.id">
           <TravelCard :travel="travel" />
         </li>
       </ul>
