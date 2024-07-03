@@ -18,7 +18,7 @@
       <ul
         class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
       >
-        <li v-for="booking in bookings?.slice(0, 5)" :key="booking.id">
+        <li v-for="booking in bookings?.slice(0, 4)" :key="booking.id">
           <BookingCard :booking="booking" />
         </li>
       </ul>

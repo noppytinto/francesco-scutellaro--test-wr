@@ -140,4 +140,111 @@ export const mockedTravels: APITravel[] = [
     return_date: "2022-10-14",
     price_per_person: "1200",
   },
+  {
+    id: "11",
+    name: "Greece: Santorini Sunsets",
+    thumbnail:
+      "https://images.unsplash.com/photo-1678266561093-324802646fb2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    description: "Experience the stunning sunsets and crystal-clear waters.",
+    departure_date: "2022-09-15",
+    return_date: "2022-09-25",
+    price_per_person: "1500",
+  },
+  {
+    id: "12",
+    name: "Switzerland: Alps and Zurich",
+    thumbnail:
+      "https://images.unsplash.com/photo-1517490560101-4ffe479ef5c3?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    description:
+      "Ski in the Swiss Alps and explore the charming city of Zurich.",
+    departure_date: "2023-12-15",
+    return_date: "2023-12-25",
+    price_per_person: "2400",
+  },
+  {
+    id: "13",
+    name: "Iceland: Northern Lights",
+    thumbnail:
+      "https://images.unsplash.com/photo-1488703480497-dfcccd4894d1?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    description:
+      "Witness the spectacular Northern Lights and explore Iceland's unique landscapes.",
+    departure_date: "2023-12-01",
+    return_date: "2023-12-10",
+    price_per_person: "2200",
+  },
+  {
+    id: "14",
+    name: "Australia: Surf and Outback",
+    thumbnail:
+      "https://images.unsplash.com/photo-1503022932596-500eb8cca2d8?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    description:
+      "Experience the vibrant city life and rugged outback adventures.",
+    departure_date: "2023-02-10",
+    return_date: "2023-02-25",
+    price_per_person: "2000",
+  },
+  {
+    id: "15",
+    name: "Peru: Machu Picchu Expedition",
+    thumbnail:
+      "https://images.unsplash.com/photo-1532996152552-eaffc4edfc1a?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    description:
+      "Hike the Inca Trail and explore the ancient ruins of Machu Picchu.",
+    departure_date: "2023-05-01",
+    return_date: "2023-05-14",
+    price_per_person: "1700",
+  },
+  {
+    id: "16",
+    name: "Morocco: Desert and Medina",
+    thumbnail:
+      "https://images.unsplash.com/photo-1451245420434-8f0ce5b89693?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    description: "Discover the vibrant markets and stunning desert landscapes.",
+    departure_date: "2023-06-10",
+    return_date: "2023-06-20",
+    price_per_person: "1600",
+  },
+  {
+    id: "17",
+    name: "Canada: Rockies and Vancouver",
+    thumbnail:
+      "https://images.unsplash.com/photo-1536637706725-c96e8837df7d?q=80&w=2000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    description:
+      "Explore the breathtaking landscapes of the Rocky Mountains and the vibrant city of Vancouver.",
+    departure_date: "2023-07-05",
+    return_date: "2023-07-15",
+    price_per_person: "1900",
+  },
+  {
+    id: "18",
+    name: "Thailand: Bangkok and Beaches",
+    thumbnail:
+      "https://images.unsplash.com/photo-1494949360228-4e9bde560065?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    description:
+      "Immerse yourself in the vibrant culture and beautiful beaches of Thailand.",
+    departure_date: "2023-01-10",
+    return_date: "2023-01-25",
+    price_per_person: "1300",
+  },
+  {
+    id: "19",
+    name: "Egypt: Pyramids and Nile Cruise",
+    thumbnail:
+      "https://images.unsplash.com/photo-1544815521-80841127c00f?q=80&w=2109&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    description: "Explore the ancient pyramids and cruise down the Nile River.",
+    departure_date: "2023-11-10",
+    return_date: "2023-11-20",
+    price_per_person: "1800",
+  },
+  {
+    id: "20",
+    name: "New Zealand: Adventure and Nature",
+    thumbnail:
+      "https://images.unsplash.com/photo-1531804159968-24716780d214?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    description:
+      "Experience the stunning natural landscapes and adventurous activities in New Zealand.",
+    departure_date: "2023-09-01",
+    return_date: "2023-09-15",
+    price_per_person: "2100",
+  },
 ];
