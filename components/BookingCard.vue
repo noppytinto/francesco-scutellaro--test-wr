@@ -18,15 +18,21 @@
         :src="booking.customer.profilePicture"
         :alt="booking.customer.firstName"
         fit="cover"
-        class="absolute left-0 top-0 w-[40px] -translate-x-1/2 -translate-y-1/4 rounded-full border-4 border-white shadow-lg"
+        width="40"
+        height="40"
+        class="absolute left-0 top-0 -translate-x-1/2 -translate-y-1/4 rounded-full border-4 border-white shadow-lg"
         loading="lazy"
+        :placeholder="[5, 5, 75, 5]"
       />
       <NuxtImg
         :src="booking.travel.thumbnail"
         :alt="booking.travel.name"
         fit="cover"
-        class="aspect-square h-[80px] w-[80px] min-w-[80px] rounded-lg"
+        width="80"
+        height="80"
+        class="aspect-square min-w-[80px] rounded-lg"
         loading="lazy"
+        :placeholder="[10, 10, 75, 5]"
       />
     </div>
   </article>

@@ -1,0 +1,1 @@
+type WithId = { id: number };

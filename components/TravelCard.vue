@@ -7,8 +7,10 @@
         :src="travel.thumbnail"
         :alt="travel.name"
         fit="cover"
-        class="h-[200px] w-[200px]"
+        width="200"
+        height="200"
         loading="lazy"
+        :placeholder="[20, 20, 75, 5]"
       />
       <p class="absolute bottom-0 p-3 text-white">
         {{ durationInDays }}

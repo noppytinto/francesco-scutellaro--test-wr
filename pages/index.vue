@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-16">
+  <div class="flex flex-col gap-16 pb-20">
     <div class="flex items-end gap-10">
       <DashboardWidget title="Total revenue" :data-value="totalRevenue" />
       <DashboardWidget
@@ -16,7 +16,7 @@
 
     <DashboardSection title="Recent bookings" seeAllLink="/bookings">
       <ul
-        class="grid grid-cols-1 gap-14 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+        class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
       >
         <li v-for="booking in bookings?.slice(0, 5)" :key="booking.id">
           <BookingCard :booking="booking" />
