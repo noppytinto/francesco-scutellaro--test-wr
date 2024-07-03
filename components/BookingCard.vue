@@ -22,7 +22,7 @@
         class="absolute left-0 top-0 -translate-x-1/2 -translate-y-1/4 rounded-full border-4 border-white shadow-lg transition-shadow transition-transform hover:scale-150 hover:shadow-lg"
       />
       <MyImg
-        :src="booking.travel.thumbnail"
+        :src="booking.travel.thumbnailURL"
         :alt="booking.travel.name"
         width="80"
         height="80"

@@ -18,7 +18,7 @@
           <MyImg
             :src="booking.customer.profilePicture"
             alt="profile picture"
-            class="b rounded-full shadow-md"
+            class="b rounded-full shadow-md transition-transform hover:scale-150"
             width="30"
             height="30"
           />
@@ -43,7 +43,6 @@
 
 <script setup lang="ts">
 import MyTable from "~/components/Table/MyTable.vue";
-import SearchInput from "~/components/inputs/MyInput.vue";
 import TableData from "~/components/Table/TableData.vue";
 import { type Booking, getMockedBookings } from "~/entities/booking/types";
 import PaymentTag from "~/components/inputs/PaymentTag.vue";

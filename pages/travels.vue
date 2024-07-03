@@ -8,8 +8,9 @@
         class="max-w-96 grow"
         v-model="searchValue"
       />
-      <MyButton icon="plus"> Add Travel </MyButton>
+      <MyButton icon="plus" @click="handleAddTravel"> Add Travel </MyButton>
     </TableActions>
+
     <!--======== travels table ========-->
     <MyTable
       :headers
@@ -25,9 +26,7 @@
         <TableData>
           {{ formatDate(travel.returnDate) }}
         </TableData>
-        <TableData>
-          {{ travel.pricePerPerson }}
-        </TableData>
+        <TableData> ${{ travel.pricePerPerson }} </TableData>
         <TableData>
           <FontAwesomeIcon
             v-if="travel.description"
@@ -38,13 +37,12 @@
         </TableData>
         <TableData>
           <FontAwesomeIcon
-            v-if="travel.thumbnail"
+            v-if="travel.thumbnailURL"
             icon="check"
             class="text-green-600"
           />
           <FontAwesomeIcon v-else icon="times" class="text-primary" />
         </TableData>
-        <TableData> ${{ travel.pricePerPerson }} </TableData>
         <TableData>
           <p>
             {{ travel.averageRating ? travel.averageRating : "-" }}
@@ -55,12 +53,70 @@
 
     <BaseModal title="Test" v-model:open="isModalOpen">
       <template #default>
-        <p>Modal content</p>
+        <form
+          class="flex flex-col gap-8"
+          id="travel-form"
+          @submit.prevent="handleSubmit"
+          ref="travelForm"
+        >
+          <MyLabel text="Name">
+            <MyInput name="name" required :model-value="clickedTravel?.name" />
+          </MyLabel>
+          <MyLabel text="Departure">
+            <MyInput
+              name="departure"
+              type="date"
+              required
+              :model-value="formatDate(clickedTravel?.departureDate)"
+            />
+          </MyLabel>
+          <MyLabel text="Return">
+            <MyInput
+              name="return"
+              type="date"
+              required
+              :model-value="formatDate(clickedTravel?.returnDate)"
+            />
+          </MyLabel>
+          <MyLabel text="Price (per person)">
+            <MyInput
+              type="number"
+              required
+              name="price"
+              :model-value="clickedTravel?.pricePerPerson.toFixed(2)"
+            />
+          </MyLabel>
+          <MyLabel text="Thumbnail URL" class="mb-4">
+            <MyInput
+              name="thumbnail"
+              type="url"
+              v-model="thumbnailUrl"
+              required
+            >
+              <template #append>
+                <MyImg
+                  v-if="thumbnailUrl"
+                  :src="thumbnailUrl"
+                  alt="thumbnail"
+                  width="80"
+                  class="m-2 aspect-square rounded transition-transform hover:scale-150"
+                />
+              </template>
+            </MyInput>
+          </MyLabel>
+          <MyTextarea
+            label="Description"
+            type="textarea"
+            placeholder="Enter a description"
+            name="description"
+            :model-value="clickedTravel?.description"
+          />
+        </form>
       </template>
 
       <template #actions>
         <MyButton variant="text" @click="isModalOpen = false">Cancel</MyButton>
-        <MyButton>Save</MyButton>
+        <MyButton form="travel-form" type="submit">Save</MyButton>
       </template>
     </BaseModal>
   </div>
@@ -68,12 +124,13 @@
 
 <script setup lang="ts">
 import { getMockedTravels, type Travel } from "~/entities/travel/types";
-import { formatDate } from "compatx";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import TableData from "~/components/Table/TableData.vue";
 import MyTable from "~/components/Table/MyTable.vue";
 import TableActions from "~/components/Table/TableActions.vue";
 import MyInput from "~/components/inputs/MyInput.vue";
+import MyLabel from "~/components/inputs/MyLabel.vue";
+import MyTextarea from "~/components/inputs/MyTextarea.vue";
 
 definePageMeta({
   title: "Travels",
@@ -87,13 +144,22 @@ const headers = [
   "Price (per person)",
   "Description",
   "Thumbnail",
-  "Price",
   "Rating",
 ];
 
 const travels = ref<Travel[]>([]);
 const searchValue = ref("");
 const isModalOpen = ref(false);
+const thumbnailUrl = ref("");
+const travelForm = ref<HTMLFormElement | null>(null);
+const isCreating = ref(false);
+const clickedTravel = ref<Travel | null>(null);
+
+// convert date to YYYY-MM-DD format
+function formatDate(date: Date | undefined) {
+  if (!date) return "";
+  return date.toISOString().split("T")[0];
+}
 
 onMounted(() => {
   travels.value = getMockedTravels();
@@ -101,7 +167,66 @@ onMounted(() => {
 
 const handleRowClick = (travel: Travel) => {
   isModalOpen.value = true;
+  thumbnailUrl.value = "";
+  isCreating.value = false;
+
+  console.log(
+    "fffffffffffffffffffffffffffffffffffffffffff clickedTravel:",
+    toRaw(travel),
+  );
+
+  thumbnailUrl.value = travel.thumbnailURL;
+  clickedTravel.value = toRaw(travel);
 };
+
+function handleSubmit() {
+  isModalOpen.value = false;
+
+  if (isCreating.value) {
+    addTravel();
+  } else {
+    updateTravel();
+  }
+}
+
+function handleAddTravel() {
+  isModalOpen.value = true;
+  isCreating.value = true;
+}
+
+function addTravel() {
+  const formData = new FormData(travelForm.value!);
+  const travel: Travel = {
+    id: (Math.random() * 1000).toFixed(0),
+    name: formData.get("name") as string,
+    departureDate: new Date(formData.get("departure") as string),
+    returnDate: new Date(formData.get("return") as string),
+    pricePerPerson: Number(formData.get("price")),
+    description: formData.get("description") as string,
+    thumbnailURL: thumbnailUrl.value,
+  };
+
+  travels.value.unshift(travel);
+
+  isCreating.value = false;
+}
+
+function updateTravel() {
+  const formData = new FormData(travelForm.value!);
+  const updatedTravel: Travel = {
+    ...clickedTravel.value!,
+    name: formData.get("name") as string,
+    departureDate: new Date(formData.get("departure") as string),
+    returnDate: new Date(formData.get("return") as string),
+    pricePerPerson: Number(formData.get("price")),
+    description: formData.get("description") as string,
+    thumbnailURL: thumbnailUrl.value,
+  };
+
+  const index = travels.value.findIndex((t) => t.id === updatedTravel.id);
+
+  travels.value[index] = updatedTravel;
+}
 
 watch(searchValue, (value) => {
   // reset the table if the search value is empty

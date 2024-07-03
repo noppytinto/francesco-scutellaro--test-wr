@@ -5,16 +5,8 @@
     :width
     :height
     fit="cover"
-    loading="lazy"
-    :placeholder="[20, 20, 75, 5]"
+    :placeholder
     @load="handleLoad"
-    class="transition-opacity"
-    :class="[
-      {
-        'animate-pulse': isLoading,
-        'opacity-0': isLoading,
-      },
-    ]"
   />
 </template>
 
@@ -24,9 +16,12 @@ type Props = {
   src: string;
   width: string;
   height?: string;
+  placeholder?: string | number[];
 };
 
-defineProps<Props>();
+withDefaults(defineProps<Props>(), {
+  placeholder: () => [20, 20, 75, 5],
+});
 
 const isLoading = ref(true);
 

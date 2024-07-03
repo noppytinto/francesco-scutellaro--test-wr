@@ -1,5 +1,7 @@
 <template>
   <button
+    :type
+    :form
     class="rounded-md px-4 py-2 font-semibold transition-all duration-100 ease-in-out hover:shadow-lg focus:outline-none active:scale-95 active:shadow-none"
     :class="{
       'bg-primary text-white': variant === 'filled',
@@ -22,9 +24,12 @@ type Variant = "filled" | "outlined" | "text";
 type Props = {
   icon?: string;
   variant?: Variant;
+  form?: string;
+  type?: "button" | "submit" | "reset";
 };
 
 withDefaults(defineProps<Props>(), {
   variant: "filled",
+  type: "button",
 });
 </script>

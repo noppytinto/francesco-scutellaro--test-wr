@@ -4,7 +4,7 @@
       class="before:from-3% relative w-max overflow-hidden rounded-lg shadow-md before:absolute before:h-full before:w-full before:bg-gradient-to-t before:from-neutral-950 before:to-transparent before:to-30%"
     >
       <MyImg
-        :src="travel.thumbnail"
+        :src="travel.thumbnailURL"
         :alt="travel.name"
         width="200"
         height="200"
