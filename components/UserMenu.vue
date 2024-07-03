@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex items-center gap-4 rounded border border-my-neutral-100 px-2 py-1.5 transition-colors duration-200 ease-in-out hover:cursor-pointer hover:bg-my-neutral-100"
+    class="flex items-center gap-4 rounded border border-my-neutral-100 px-2 py-1.5 transition-colors duration-200 ease-in-out hover:cursor-pointer hover:border-tertiary hover:bg-my-neutral-50"
   >
     <div class="flex items-center gap-2">
       <MyImg
@@ -10,7 +10,7 @@
         height="25"
         class="rounded-full shadow"
       />
-      <p class="font-semibold">John Doe</p>
+      <p class="text-sm font-semibold">John Doe</p>
     </div>
 
     <button>
