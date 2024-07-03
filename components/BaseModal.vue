@@ -2,11 +2,11 @@
   <teleport to="body">
     <div
       v-if="open"
-      class="animate-fade fixed inset-0 z-10 flex items-center justify-center bg-black bg-opacity-50 p-4"
+      class="animate-fade fixed inset-0 z-10 flex items-end justify-center bg-black bg-opacity-50 p-2 sm:items-center sm:p-4"
       @click="handleClickOutside"
     >
       <div
-        class="flex w-full flex-col gap-8 rounded-md bg-white p-5 sm:w-1/2"
+        class="flex min-h-96 w-full flex-col justify-between gap-8 rounded-md bg-white p-5 sm:w-1/2"
         @click.stop
       >
         <header
