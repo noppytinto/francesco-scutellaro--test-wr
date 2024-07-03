@@ -1,6 +1,6 @@
 <template>
   <article
-    class="flex justify-between gap-4 rounded-lg border border-my-neutral-300 p-2.5"
+    class="flex justify-between gap-4 rounded-lg border border-my-neutral-100 p-2.5"
   >
     <div class="flex grow flex-col gap-2">
       <h1 class="line-clamp-1 font-semibold">
