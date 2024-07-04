@@ -4,7 +4,7 @@
     :alt
     :width
     :height
-    fit="cover"
+    :fit
     :placeholder
     @load="handleLoad"
     :preload
@@ -19,7 +19,7 @@ type Props = {
   height?: string;
   placeholder?: string | number[];
   preload?: boolean;
-  fit?: "fill" | "contain" | "cover" | "none" | "scale-down";
+  fit?: "fill" | "contain" | "cover" | "inside" | "outside";
 };
 
 withDefaults(defineProps<Props>(), {

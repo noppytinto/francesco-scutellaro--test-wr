@@ -9,8 +9,9 @@
           :class="{
             'font-semibold text-black': currentActiveTab === tab.id,
             'bg-white': currentActiveTab !== tab.id,
+            'cursor-pointer': !props.disableTabClick,
           }"
-          class="relative cursor-pointer px-10 py-4 text-my-neutral-300"
+          class="relative px-10 py-4 text-my-neutral-300"
         >
           {{ tab.title }}
 
@@ -51,8 +52,9 @@ import type { Tab } from "~/components/tabs/types";
 
 type Props = {
   tabs: Tab[];
+  disableTabClick?: boolean;
 };
-defineProps<Props>();
+const props = defineProps<Props>();
 
 const currentActiveTab = defineModel<number>("currentActiveTab", {
   default: 0,
@@ -60,6 +62,8 @@ const currentActiveTab = defineModel<number>("currentActiveTab", {
 });
 
 const handleClickTab = (tab: Tab) => {
+  if (props.disableTabClick) return;
+
   currentActiveTab.value = tab.id;
 };
 </script>

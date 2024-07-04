@@ -97,7 +97,7 @@ function handleSubmit() {
 
   // add travel
   const newTravel: Travel = {
-    id: getRandomNumber(1, 1000).toString(),
+    id: getRandomNumber(1000, 2000).toString(),
     name: formData.get("name") as string,
     departureDate: new Date(formData.get("departure") as string),
     returnDate: new Date(formData.get("return") as string),

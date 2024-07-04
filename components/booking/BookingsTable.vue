@@ -10,9 +10,10 @@
         <UIImg
           :src="booking.customer.profilePicture"
           alt="profile picture"
-          class="b rounded-full shadow-md transition-transform hover:scale-150"
+          class="b aspect-square rounded-full shadow-md transition-transform hover:scale-150"
           width="30"
           height="30"
+          fit="fill"
         />
         <p>
           {{ booking.customer.firstName + " " + booking.customer.lastName }}

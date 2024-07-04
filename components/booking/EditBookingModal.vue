@@ -15,7 +15,7 @@
     </template>
     <template #default>
       <form
-        class="mb-4 flex flex-col gap-8"
+        class="flex flex-col gap-8"
         id="travel-form"
         @submit.prevent="handleSubmit"
         ref="travelForm"
@@ -42,6 +42,26 @@
         </UIFieldset>
 
         <UIFieldset legend="Customer details">
+          <UILabel text="Profile picture URL" class="mb-4">
+            <UIInput
+              name="profilePicture"
+              type="url"
+              v-model="profilePictureURL"
+            >
+              <template #append>
+                <UIImg
+                  v-if="profilePictureURL"
+                  :src="profilePictureURL"
+                  alt="thumbnail"
+                  width="80"
+                  class="m-2 rounded-md transition-transform hover:scale-150 hover:shadow-lg"
+                  placeholder=""
+                  fit="fill"
+                />
+              </template>
+            </UIInput>
+          </UILabel>
+
           <UILabel text="First Name">
             <UIInput
               name="firstName"
@@ -186,6 +206,7 @@ const selectedTravelId = ref<string | undefined>(undefined);
 const travelRepository = new TravelRepository();
 const bookingRepository = new BookingRepository();
 const travelThumbnailURL = ref("");
+const profilePictureURL = ref("");
 const travelForm = ref<HTMLFormElement | null>(null);
 const allTravel = ref<Travel[]>([]);
 const isDeleteModalOpen = ref(false);
@@ -212,6 +233,7 @@ watch(
     if (!booking) return;
     selectedTravelId.value = booking.travel.id;
     travelThumbnailURL.value = booking.travel.thumbnailURL;
+    profilePictureURL.value = booking.customer.profilePicture;
   },
 );
 
@@ -242,6 +264,7 @@ function handleSubmit() {
       email: formData.get("email") as string,
       phoneNumber: formData.get("phoneNumber") as string,
       gender: formData.get("gender") as UserGender,
+      profilePicture: formData.get("profilePicture") as string,
     },
     paymentMethod: formData.get("paymentMethod") as PaymentMethod,
     internalNotes: formData.get("additionalNotes") as string,

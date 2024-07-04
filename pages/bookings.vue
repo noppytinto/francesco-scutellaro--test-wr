@@ -16,7 +16,7 @@
     <CreateBookingModal
       v-model:open="isCreateModalOpen"
       @submit="handleClickSubmit"
-      class="min-h-[80vh]"
+      class="min-h-[75vh]"
     />
   </div>
 </template>
