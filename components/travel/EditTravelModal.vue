@@ -105,6 +105,7 @@ import { formatDateToYYYYMMDD } from "~/utils/date";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import DeleteSection from "~/components/DeleteSection.vue";
 import UIConfirmationModal from "~/components/ui/UIConfirmationModal.vue";
+import { BookingRepository } from "~/respositories/BookingRepository";
 
 type Props = {
   travel: Travel | undefined;
@@ -121,6 +122,7 @@ const emits = defineEmits<Emits>();
 // STATE & DATA
 // ====================================================
 const travelRepository = new TravelRepository();
+const bookingRepository = new BookingRepository();
 const thumbnailUrl = ref("");
 const travelForm = ref<HTMLFormElement | null>(null);
 const isDeleteModalOpen = ref(false);
@@ -181,6 +183,13 @@ function handleClickConfirmDelete() {
   if (!props.travel) return;
 
   travelRepository.delete(props.travel.id);
+  // also delete all bookings associated with this travel
+  bookingRepository.getAll().forEach((booking) => {
+    if (booking.travel.id === props.travel!.id) {
+      bookingRepository.delete(booking.id);
+    }
+  });
+
   open.value = false;
   isDeleteModalOpen.value = false;
   emits("submit");
