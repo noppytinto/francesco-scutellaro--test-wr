@@ -1,6 +1,6 @@
 <template>
   <article
-    class="flex justify-between gap-4 rounded-lg border border-my-neutral-100 p-2.5"
+    class="flex justify-between gap-4 rounded-lg border border-my-neutral-100 p-2"
   >
     <div class="flex grow flex-col gap-2">
       <h1 class="line-clamp-1 font-semibold">
@@ -9,7 +9,7 @@
       <p class="line-clamp-1 text-sm text-my-neutral-300">
         {{ booking.travel.name }}
       </p>
-      <p class="line-clamp-1">
+      <p>
         <PaymentTag :paymentMethod="booking.paymentMethod" />
       </p>
     </div>
