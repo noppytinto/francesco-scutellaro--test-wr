@@ -1,42 +1,13 @@
-# Nuxt 3 Minimal Starter
+# Deploy Status
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+[![Netlify Status](https://api.netlify.com/api/v1/badges/1d43fbf3-29c9-455b-bebc-dc85751157e9/deploy-status)](https://app.netlify.com/sites/francesco-scutellaro-test-wr-h34b4hj5/deploys)
 
-## Setup
+<br>
 
-Make sure to install the dependencies:
+## Run the project (dev mode)
 
 ```bash
-# npm
 npm install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
 npm run dev
-
 ```
 
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
