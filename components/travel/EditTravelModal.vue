@@ -45,12 +45,25 @@
                 :src="thumbnailUrl"
                 alt="thumbnail"
                 width="80"
-                class="m-2 aspect-square rounded transition-transform hover:scale-150"
+                class="m-2 aspect-square rounded transition-transform hover:scale-150 hover:shadow-lg"
                 placeholder=""
               />
             </template>
           </UIInput>
         </UILabel>
+
+        <UILabel text="Rating(0-5)">
+          <UIInput
+            type="number"
+            name="rating"
+            :min="0"
+            :max="5"
+            :model-value="travel?.averageRating?.toString() || ''"
+            :icon="['fas', 'star']"
+          >
+          </UIInput>
+        </UILabel>
+
         <UITextarea
           label="Description"
           type="textarea"
@@ -156,6 +169,7 @@ function handleSubmit() {
     pricePerPerson: parseFloat(formData.get("price") as string),
     thumbnailURL: thumbnailUrl.value || "",
     description: formData.get("description") as string,
+    averageRating: parseFloat(formData.get("rating") as string),
   };
 
   travelRepository.update(updatedTravel);

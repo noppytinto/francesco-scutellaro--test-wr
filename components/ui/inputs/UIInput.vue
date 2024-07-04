@@ -9,6 +9,7 @@
       :required
       :name
       :min
+      :max
     />
     <slot name="append" />
   </UIBaseInput>
@@ -25,6 +26,7 @@ type Props = {
   name?: string;
   required?: boolean;
   min?: number;
+  max?: number;
 };
 
 withDefaults(defineProps<Props>(), {

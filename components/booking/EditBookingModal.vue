@@ -34,7 +34,7 @@
                   :src="travelThumbnailURL"
                   alt="thumbnail"
                   width="80"
-                  class="m-2 aspect-square rounded transition-transform hover:scale-150"
+                  class="m-2 aspect-square rounded transition-transform hover:scale-150 hover:shadow-lg"
                 />
               </template>
             </UIAutocompleteInput>

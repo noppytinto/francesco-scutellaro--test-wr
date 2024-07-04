@@ -13,7 +13,11 @@
       <UITableData>
         {{ formatDateToDDMMYYYY(travel.returnDate) }}
       </UITableData>
-      <UITableData> ${{ travel.pricePerPerson }} </UITableData>
+      <UITableData>
+        <span class="font-bold text-green-700"> $ </span>
+
+        {{ travel.pricePerPerson }}
+      </UITableData>
       <UITableData>
         <FontAwesomeIcon
           v-if="travel.description"
