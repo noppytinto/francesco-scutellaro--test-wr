@@ -182,5 +182,7 @@ function handleClickConfirmDelete() {
 
   travelRepository.delete(props.travel.id);
   open.value = false;
+  isDeleteModalOpen.value = false;
+  emits("submit");
 }
 </script>
