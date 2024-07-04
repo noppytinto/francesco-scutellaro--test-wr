@@ -22,21 +22,12 @@
       >
         <UIFieldset legend="Travel details">
           <UILabel text="Booked travel">
-            <UISelect
-              name="travel"
-              required
+            <UIAutocompleteInput
+              :itemTitles="allTravel.map((t) => t.name)"
+              :itemIds="allTravel.map((t) => t.id)"
               v-model:model-value="selectedTravelId"
-              class="pr-0"
+              required
             >
-              <option></option>
-              <option
-                v-for="travel in allTravel"
-                :key="travel.id"
-                :value="travel.id"
-              >
-                {{ travel.name }}
-              </option>
-
               <template #append>
                 <UIImg
                   v-if="travelThumbnailURL"
@@ -46,7 +37,7 @@
                   class="m-2 aspect-square rounded transition-transform hover:scale-150"
                 />
               </template>
-            </UISelect>
+            </UIAutocompleteInput>
           </UILabel>
         </UIFieldset>
 
@@ -160,6 +151,7 @@ import UISelect from "~/components/ui/inputs/UISelect.vue";
 import UIFieldset from "~/components/ui/inputs/UIFieldset.vue";
 import type { Travel } from "~/entities/travel/types";
 import { BookingRepository } from "~/respositories/BookingRepository";
+import UIAutocompleteInput from "~/components/ui/inputs/UIAutocompleteInput.vue";
 
 type Props = {
   booking: Booking | undefined;
