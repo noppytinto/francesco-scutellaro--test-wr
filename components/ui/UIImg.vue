@@ -7,6 +7,7 @@
     fit="cover"
     :placeholder
     @load="handleLoad"
+    :preload
   />
 </template>
 
@@ -17,6 +18,7 @@ type Props = {
   width: string;
   height?: string;
   placeholder?: string | number[];
+  preload?: boolean;
 };
 
 withDefaults(defineProps<Props>(), {

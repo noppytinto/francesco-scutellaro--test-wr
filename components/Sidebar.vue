@@ -15,12 +15,14 @@
         src="images/weroad-logo-collapsed.svg"
         alt="logo"
         width="40"
+        preload
       />
       <UIImg
         v-else
         src="images/weroad-logo-expanded.svg"
         alt="logo"
         width="80"
+        preload
       />
       <button @click="handleClickCollapse">
         <FontAwesomeIcon

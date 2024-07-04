@@ -19,7 +19,7 @@
         :alt="booking.customer.firstName"
         width="40"
         height="40"
-        class="absolute left-0 top-0 -translate-x-1/2 -translate-y-1/4 rounded-full border-4 border-white shadow-lg transition-shadow transition-transform hover:scale-150 hover:shadow-lg"
+        class="absolute left-0 top-0 -translate-x-1/2 -translate-y-1/4 rounded-full border-4 border-white shadow-lg transition-all hover:scale-150 hover:shadow-lg"
       />
       <UIImg
         :src="booking.travel.thumbnailURL"
