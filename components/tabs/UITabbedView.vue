@@ -22,8 +22,7 @@
             <span
               class="absolute inline-flex h-full w-full rounded-full opacity-50"
               :class="{
-                'animate-pulse bg-primary opacity-100':
-                  currentActiveTab === tab.id,
+                'bg-primary opacity-100': currentActiveTab === tab.id,
                 'opacity-0': currentActiveTab !== tab.id,
               }"
             ></span>
