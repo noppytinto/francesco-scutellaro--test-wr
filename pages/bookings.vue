@@ -1,28 +1,28 @@
 <template>
   <div>
     <UITableActions class="mb-4">
-      <UIInput
-        type="search"
-        placeholder="search"
-        icon="magnifying-glass"
-        class="max-w-96 grow"
-        v-model="searchValue"
-      />
-      <UIButton icon="plus"> Add Booking </UIButton>
+      <UISearchInput class="max-w-96 grow" v-model="searchValue" />
+      <UIButton icon="plus" @click="handleClickAddBooking">
+        Add Booking
+      </UIButton>
     </UITableActions>
 
     <BookingsTable :bookings="bookings" @row-click="handleClickRow" />
+
+    <EditBookingModal
+      v-model:open="isEditModalOpen"
+      :booking="clickedBooking"
+      @submit="handleClickSubmit"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
 import { type Booking } from "~/entities/booking/types";
-import PaymentTag from "~/components/booking/PaymentTag.vue";
-import UIInput from "~/components/ui/inputs/UIInput.vue";
 import { BookingRepository } from "~/respositories/BookingRepository";
 import BookingsTable from "~/components/booking/BookingsTable.vue";
-import TravelsTable from "~/components/travel/TravelsTable.vue";
-import type { Travel } from "~/entities/travel/types";
+import UISearchInput from "~/components/ui/UISearchInput.vue";
+import EditBookingModal from "~/components/booking/EditBookingModal.vue";
 
 definePageMeta({
   title: "Bookings",
@@ -77,7 +77,7 @@ function handleClickAddBooking() {
   isCreateModalOpen.value = true;
 }
 
-function handleSubmit() {
+function handleClickSubmit() {
   // refresh the table
   bookings.value = bookingRepository.getAll();
 }

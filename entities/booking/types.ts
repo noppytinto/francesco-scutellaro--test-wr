@@ -1,7 +1,14 @@
 import type { APITravel, Travel } from "~/entities/travel/types";
 import type { APICustomer, Customer } from "~/entities/customer/types";
 
-export type PaymentMethod = "Credit transfer" | "Paypal" | "Revolut";
+export const PAYMENT_METHODS = {
+  CREDIT_TRANSFER: "Credit transfer",
+  PAYPAL: "Paypal",
+  REVOLUT: "Revolut",
+} as const;
+
+export type PaymentMethod =
+  (typeof PAYMENT_METHODS)[keyof typeof PAYMENT_METHODS];
 
 export type APIBooking = {
   id: string;

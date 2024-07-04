@@ -16,6 +16,8 @@
         alt="logo"
         width="40"
         preload
+        class="cursor-pointer"
+        @click="navigateTo('/')"
       />
       <UIImg
         v-else
@@ -23,6 +25,8 @@
         alt="logo"
         width="80"
         preload
+        class="cursor-pointer"
+        @click="navigateTo('/')"
       />
       <button @click="handleClickCollapse">
         <FontAwesomeIcon

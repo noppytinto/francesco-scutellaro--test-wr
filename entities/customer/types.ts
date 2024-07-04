@@ -9,12 +9,15 @@ export type APICustomer = {
   profile_picture: string;
 };
 
-export type UserGender =
-  | "man"
-  | "woman"
-  | "non-binary"
-  | "other"
-  | "prefer not to say";
+export const USER_GENDER = {
+  man: "man",
+  woman: "woman",
+  nonBinary: "non-binary",
+  other: "other",
+  preferNotToSay: "prefer not to say",
+} as const;
+
+export type UserGender = (typeof USER_GENDER)[keyof typeof USER_GENDER];
 
 export type Customer = {
   id: string;

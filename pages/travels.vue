@@ -1,13 +1,7 @@
 <template>
   <div>
     <UITableActions class="mb-4">
-      <UIInput
-        type="search"
-        placeholder="search"
-        icon="magnifying-glass"
-        class="max-w-96 grow"
-        v-model="searchValue"
-      />
+      <UISearchInput class="max-w-96 grow" v-model="searchValue" />
       <UIButton icon="plus" @click="handleClickAddTravel">
         Add Travel
       </UIButton>
@@ -21,7 +15,7 @@
     />
     <EditTravelModal
       v-model:open="isEditModalOpen"
-      :travel="clickedTravel!"
+      :travel="clickedTravel"
       @submit="handleClickSubmit"
     />
   </div>
@@ -31,11 +25,11 @@
 import { type Travel } from "~/entities/travel/types";
 import UIButton from "~/components/ui/UIButton.vue";
 import UITableActions from "~/components/ui/table/UITableActions.vue";
-import UIInput from "~/components/ui/inputs/UIInput.vue";
 import { TravelRepository } from "~/respositories/TravelRepository";
 import TravelsTable from "~/components/travel/TravelsTable.vue";
 import CreateTravelModal from "~/components/travel/CreateTravelModal.vue";
 import EditTravelModal from "~/components/travel/EditTravelModal.vue";
+import UISearchInput from "~/components/ui/UISearchInput.vue";
 
 definePageMeta({
   title: "Travels",

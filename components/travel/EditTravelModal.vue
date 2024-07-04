@@ -1,5 +1,5 @@
 <template>
-  <UIBaseModal title="Test" v-model:open="open">
+  <UIBaseModal title="Edit Travel" v-model:open="open">
     <template #default>
       <form
         class="flex flex-col gap-8"
@@ -79,7 +79,7 @@ import { formatDateToYYYYMMDD } from "~/utils/date";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 type Props = {
-  travel: Travel | null;
+  travel: Travel | undefined;
 };
 
 type Emits = {
