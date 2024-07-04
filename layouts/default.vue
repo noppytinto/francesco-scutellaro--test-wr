@@ -20,7 +20,7 @@ import UserMenu from "~/components/UserMenu.vue";
 import { TravelRepository } from "~/respositories/TravelRepository";
 import { BookingRepository } from "~/respositories/BookingRepository";
 
-onMounted(() => {
+onBeforeMount(() => {
   const travelRepository = new TravelRepository();
   travelRepository.init();
 
