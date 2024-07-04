@@ -24,8 +24,8 @@
       <UIImg
         :src="booking.travel.thumbnailURL"
         :alt="booking.travel.name"
-        width="80"
-        height="80"
+        width="85"
+        height="85"
         class="aspect-square min-w-[80px] rounded-lg"
       />
     </div>

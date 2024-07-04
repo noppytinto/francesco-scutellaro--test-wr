@@ -1,5 +1,5 @@
 <template>
-  <UIBaseModal title="Test" v-model:open="open">
+  <UIBaseModal title="Create new travel" v-model:open="open">
     <template #default>
       <form
         class="flex flex-col gap-8"

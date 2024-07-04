@@ -12,7 +12,7 @@
     >
       <!-- actual modal -->
       <div
-        class="flex max-h-[80%] w-full flex-col justify-between gap-8 overflow-x-auto rounded-md bg-white shadow-lg"
+        class="flex max-h-[80%] w-full flex-col justify-between gap-8 overflow-x-auto rounded-lg bg-white shadow-lg"
         @click.stop
         :class="[
           {

@@ -2,9 +2,7 @@
   <div>
     <UITableActions class="mb-4">
       <UISearchInput class="max-w-96 grow" v-model="searchValue" />
-      <UIButton icon="plus" @click="handleClickAddTravel">
-        Add Travel
-      </UIButton>
+      <UIButton icon="plus" @click="handleClickAddTravel"> Create </UIButton>
     </UITableActions>
 
     <TravelsTable :travels @row-click="handleClickRow" />
