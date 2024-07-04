@@ -67,7 +67,6 @@ const props = defineProps<Props>();
 const emit = defineEmits<Emits>();
 
 const handleClose = () => {
-  console.log("close");
   emit("update:open", false);
 };
 

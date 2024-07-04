@@ -2,7 +2,7 @@
   <div>
     <UITableActions class="mb-4">
       <UISearchInput class="max-w-96 grow" v-model="searchValue" />
-      <UIButton icon="plus" @click="handleClickAddBooking"> Create </UIButton>
+      <UIButton icon="plus" @click="handleClickCreate"> Create </UIButton>
     </UITableActions>
 
     <BookingsTable :bookings="bookings" @row-click="handleClickRow" />
@@ -10,6 +10,11 @@
     <EditBookingModal
       v-model:open="isEditModalOpen"
       :booking="clickedBooking"
+      @submit="handleClickSubmit"
+    />
+
+    <CreateBookingModal
+      v-model:open="isCreateModalOpen"
       @submit="handleClickSubmit"
     />
   </div>
@@ -20,6 +25,9 @@ import { type Booking } from "~/entities/booking/types";
 import { BookingRepository } from "~/respositories/BookingRepository";
 import BookingsTable from "~/components/booking/BookingsTable.vue";
 import UISearchInput from "~/components/ui/UISearchInput.vue";
+import UIButton from "~/components/ui/UIButton.vue";
+import UITableActions from "~/components/ui/table/UITableActions.vue";
+import CreateBookingModal from "~/components/booking/CreateBookingModal.vue";
 import EditBookingModal from "~/components/booking/EditBookingModal.vue";
 
 definePageMeta({
@@ -70,7 +78,7 @@ function handleClickRow(booking: Booking) {
   clickedBooking.value = toRaw(booking);
 }
 
-function handleClickAddBooking() {
+function handleClickCreate() {
   clickedBooking.value = undefined;
   isCreateModalOpen.value = true;
 }
