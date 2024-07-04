@@ -37,10 +37,12 @@
 </template>
 
 <script setup lang="ts">
-import { getMockedTravels, type Travel } from "~/entities/travel/types";
+import { type Travel } from "~/entities/travel/types";
 import DashboardSection from "~/components/DashboardSection.vue";
-import { type Booking, getMockedBookings } from "~/entities/booking/types";
+import { type Booking } from "~/entities/booking/types";
 import DashboardWidget from "~/components/DashboardWidget.vue";
+import { TravelRepository } from "~/respositories/TravelRepository";
+import { BookingRepository } from "~/respositories/BookingRepository";
 
 definePageMeta({
   title: "Dashboard",
@@ -59,8 +61,11 @@ const totalRevenue = computed(() => {
 const totalTravels = computed(() => String(travels.value?.length) || "");
 const totalBookings = computed(() => String(bookings.value?.length) || "");
 
-watchEffect(() => {
-  travels.value = getMockedTravels();
-  bookings.value = getMockedBookings();
+watchEffect(async () => {
+  const travelRepository = new TravelRepository();
+  travels.value = travelRepository.getAll();
+
+  const bookingRepository = new BookingRepository();
+  bookings.value = bookingRepository.getAll();
 });
 </script>

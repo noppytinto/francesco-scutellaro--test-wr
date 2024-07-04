@@ -4,9 +4,9 @@
       <h2 class="text-2xl font-bold">
         {{ title }}
       </h2>
-      <MyLink v-if="seeAllLink" :to="seeAllLink" class="text-sm">
+      <UILink v-if="seeAllLink" :to="seeAllLink" class="text-sm">
         see all
-      </MyLink>
+      </UILink>
     </header>
 
     <slot />
@@ -14,8 +14,6 @@
 </template>
 
 <script setup lang="ts">
-import MyLink from "~/components/MyLink.vue";
-
 type Props = {
   title: string;
   seeAllLink?: string;

@@ -1,6 +1,5 @@
 <template>
-  <span
-    class="rounded px-2 py-1 text-xs font-semibold text-white"
+  <UITag
     :class="{
       'bg-green-600': paymentMethod === 'Credit transfer',
       'bg-gradient-to-r from-blue-500 to-rose-500': paymentMethod === 'Revolut',
@@ -8,11 +7,12 @@
     }"
   >
     {{ paymentMethod }}
-  </span>
+  </UITag>
 </template>
 
 <script setup lang="ts">
 import type { PaymentMethod } from "~/entities/booking/types";
+import UITag from "~/components/ui/UITag.vue";
 
 type Props = {
   paymentMethod: PaymentMethod;

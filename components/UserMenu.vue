@@ -3,7 +3,7 @@
     class="flex items-center gap-4 rounded border border-my-neutral-100 px-2 py-1.5 transition-colors hover:cursor-pointer hover:border-tertiary hover:bg-my-neutral-50"
   >
     <div class="flex items-center gap-2">
-      <MyImg
+      <UIImg
         src="https://randomuser.me/api/portraits/men/1.jpg"
         alt="avatar"
         width="25"
@@ -21,5 +21,4 @@
 
 <script setup lang="ts">
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import MyImg from "~/components/MyImg.vue";
 </script>

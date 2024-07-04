@@ -14,14 +14,14 @@
       </p>
     </div>
     <div class="relative">
-      <MyImg
+      <UIImg
         :src="booking.customer.profilePicture"
         :alt="booking.customer.firstName"
         width="40"
         height="40"
         class="absolute left-0 top-0 -translate-x-1/2 -translate-y-1/4 rounded-full border-4 border-white shadow-lg transition-shadow transition-transform hover:scale-150 hover:shadow-lg"
       />
-      <MyImg
+      <UIImg
         :src="booking.travel.thumbnailURL"
         :alt="booking.travel.name"
         width="80"
@@ -34,8 +34,7 @@
 
 <script setup lang="ts">
 import type { Booking } from "~/entities/booking/types";
-import MyImg from "~/components/MyImg.vue";
-import PaymentTag from "~/components/inputs/PaymentTag.vue";
+import PaymentTag from "~/components/PaymentTag.vue";
 
 type Props = {
   booking: Booking;

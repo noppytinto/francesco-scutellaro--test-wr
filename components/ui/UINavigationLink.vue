@@ -37,14 +37,16 @@
 <script setup lang="ts">
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
-type AppRoutes = {
-  home: "/";
-  travels: "/travels";
-  bookings: "/bookings";
-};
+const APP_ROUTES = {
+  home: "/",
+  travels: "/travels",
+  bookings: "/bookings",
+} as const;
+
+type APIRoute = (typeof APP_ROUTES)[keyof typeof APP_ROUTES];
 
 type Props = {
-  to: AppRoutes[keyof AppRoutes];
+  to: APIRoute;
   title: string;
   icon: string[] | string;
   iconClass?: string;

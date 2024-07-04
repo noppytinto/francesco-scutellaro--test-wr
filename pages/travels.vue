@@ -1,57 +1,57 @@
 <template>
   <div>
-    <TableActions class="mb-4">
-      <MyInput
+    <UITableActions class="mb-4">
+      <UIInput
         type="search"
         placeholder="search"
         icon="magnifying-glass"
         class="max-w-96 grow"
         v-model="searchValue"
       />
-      <MyButton icon="plus" @click="handleAddTravel"> Add Travel </MyButton>
-    </TableActions>
+      <UIButton icon="plus" @click="handleAddTravel"> Add Travel </UIButton>
+    </UITableActions>
 
     <!--======== travels table ========-->
-    <MyTable
+    <UITable
       :headers
       :data="travels"
       row-class="cursor-pointer"
       @row-click="handleRowClick"
     >
       <template #default="{ value: travel }">
-        <TableData>{{ travel.name }}</TableData>
-        <TableData>
-          {{ formatDate(travel.departureDate) }}
-        </TableData>
-        <TableData>
-          {{ formatDate(travel.returnDate) }}
-        </TableData>
-        <TableData> ${{ travel.pricePerPerson }} </TableData>
-        <TableData>
+        <UITableData>{{ travel.name }}</UITableData>
+        <UITableData>
+          {{ formatDateToDDMMYYYY(travel.departureDate) }}
+        </UITableData>
+        <UITableData>
+          {{ formatDateToDDMMYYYY(travel.returnDate) }}
+        </UITableData>
+        <UITableData> ${{ travel.pricePerPerson }} </UITableData>
+        <UITableData>
           <FontAwesomeIcon
             v-if="travel.description"
             icon="check"
             class="text-green-600"
           />
           <FontAwesomeIcon v-else icon="times" class="text-primary" />
-        </TableData>
-        <TableData>
+        </UITableData>
+        <UITableData>
           <FontAwesomeIcon
             v-if="travel.thumbnailURL"
             icon="check"
             class="text-green-600"
           />
           <FontAwesomeIcon v-else icon="times" class="text-primary" />
-        </TableData>
-        <TableData>
+        </UITableData>
+        <UITableData>
           <p>
             {{ travel.averageRating ? travel.averageRating : "-" }}
           </p>
-        </TableData>
+        </UITableData>
       </template>
-    </MyTable>
+    </UITable>
 
-    <BaseModal title="Test" v-model:open="isModalOpen">
+    <UIBaseModal title="Test" v-model:open="isModalOpen">
       <template #default>
         <form
           class="flex flex-col gap-8"
@@ -59,37 +59,45 @@
           @submit.prevent="handleSubmit"
           ref="travelForm"
         >
-          <MyLabel text="Name">
-            <MyInput name="name" required :model-value="clickedTravel?.name" />
-          </MyLabel>
-          <MyLabel text="Departure">
-            <MyInput
+          <UILabel text="Name">
+            <UIInput name="name" required :model-value="clickedTravel?.name" />
+          </UILabel>
+          <UILabel text="Departure">
+            <UIInput
               name="departure"
               type="date"
               required
-              :model-value="formatDate(clickedTravel?.departureDate)"
+              :model-value="
+                clickedTravel?.departureDate
+                  ? formatDateToDDMMYYYY(clickedTravel?.departureDate)
+                  : ''
+              "
             />
-          </MyLabel>
-          <MyLabel text="Return">
-            <MyInput
+          </UILabel>
+          <UILabel text="Return">
+            <UIInput
               name="return"
               type="date"
               required
-              :model-value="formatDate(clickedTravel?.returnDate)"
+              :model-value="
+                clickedTravel?.returnDate
+                  ? formatDateToDDMMYYYY(clickedTravel?.returnDate)
+                  : ''
+              "
             />
-          </MyLabel>
-          <MyLabel text="Price (per person)">
-            <MyInput
+          </UILabel>
+          <UILabel text="Price (per person)">
+            <UIInput
               type="number"
               required
               name="price"
               :model-value="clickedTravel?.pricePerPerson.toFixed(2)"
             />
-          </MyLabel>
-          <MyLabel text="Thumbnail URL" class="mb-4">
-            <MyInput name="thumbnail" type="url" v-model="thumbnailUrl">
+          </UILabel>
+          <UILabel text="Thumbnail URL" class="mb-4">
+            <UIInput name="thumbnail" type="url" v-model="thumbnailUrl">
               <template #append>
-                <MyImg
+                <UIImg
                   v-if="thumbnailUrl"
                   :src="thumbnailUrl"
                   alt="thumbnail"
@@ -98,9 +106,9 @@
                   placeholder=""
                 />
               </template>
-            </MyInput>
-          </MyLabel>
-          <MyTextarea
+            </UIInput>
+          </UILabel>
+          <UITextarea
             label="Description"
             type="textarea"
             placeholder="Enter a description"
@@ -111,22 +119,26 @@
       </template>
 
       <template #actions>
-        <MyButton variant="text" @click="isModalOpen = false">Cancel</MyButton>
-        <MyButton form="travel-form" type="submit">Save</MyButton>
+        <UIButton variant="text" @click="isModalOpen = false">Cancel</UIButton>
+        <UIButton form="travel-form" type="submit">Save</UIButton>
       </template>
-    </BaseModal>
+    </UIBaseModal>
   </div>
 </template>
 
 <script setup lang="ts">
-import { getMockedTravels, type Travel } from "~/entities/travel/types";
+import { type Travel } from "~/entities/travel/types";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import TableData from "~/components/Table/TableData.vue";
-import MyTable from "~/components/Table/MyTable.vue";
-import TableActions from "~/components/Table/TableActions.vue";
-import MyInput from "~/components/inputs/MyInput.vue";
-import MyLabel from "~/components/inputs/MyLabel.vue";
-import MyTextarea from "~/components/inputs/MyTextarea.vue";
+import UIButton from "~/components/ui/UIButton.vue";
+import UITableActions from "~/components/ui/table/UITableActions.vue";
+import UIInput from "~/components/ui/inputs/UIInput.vue";
+import UITable from "~/components/ui/table/UITable.vue";
+import UITableData from "~/components/ui/table/UITableData.vue";
+import UIBaseModal from "~/components/ui/UIBaseModal.vue";
+import UILabel from "~/components/ui/UILabel.vue";
+import UITextarea from "~/components/ui/UITextarea.vue";
+import { TravelRepository } from "~/respositories/TravelRepository";
+import { formatDateToDDMMYYYY } from "~/utils/date";
 
 definePageMeta({
   title: "Travels",
@@ -143,6 +155,7 @@ const headers = [
   "Rating",
 ];
 
+const travelRepository = new TravelRepository();
 const travels = ref<Travel[]>([]);
 const searchValue = ref("");
 const isModalOpen = ref(false);
@@ -152,13 +165,12 @@ const isCreating = ref(false);
 const clickedTravel = ref<Travel | null>(null);
 
 onMounted(() => {
-  travels.value = getMockedTravels();
+  travels.value = travelRepository.getAll();
 });
 
 // ====================================================
 // FUNCTIONS
 // ====================================================
-
 function handleRowClick(travel: Travel) {
   isModalOpen.value = true;
   isCreating.value = false;
@@ -219,24 +231,17 @@ function updateTravel() {
   travels.value[index] = updatedTravel;
 }
 
-// convert date to YYYY-MM-DD format
-function formatDate(date: Date | undefined) {
-  if (!date) return "";
-  return date.toISOString().split("T")[0];
-}
-
 // ====================================================
 // WATCHERS
 // ====================================================
-
 watch(searchValue, (value) => {
   // reset the table if the search value is empty
   if (!value) {
-    travels.value = getMockedTravels();
+    travels.value = travelRepository.getAll();
     return;
   }
 
-  const allTravels = getMockedTravels();
+  const allTravels = travelRepository.getAll();
   travels.value = allTravels.filter((t) =>
     t.name.toLowerCase().includes(value.toLowerCase()),
   );

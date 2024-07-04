@@ -3,7 +3,7 @@
     <div
       class="before:from-3% relative w-max overflow-hidden rounded-lg shadow-md before:absolute before:h-full before:w-full before:bg-gradient-to-t before:from-neutral-950 before:to-transparent before:to-30%"
     >
-      <MyImg
+      <UIImg
         :src="travel.thumbnailURL"
         :alt="travel.name"
         width="200"
@@ -27,7 +27,7 @@
 
 <script setup lang="ts">
 import type { Travel } from "~/entities/travel/types";
-import MyImg from "~/components/MyImg.vue";
+import { getDifferenceInDays } from "~/utils/date";
 
 type Props = {
   travel: Travel;
@@ -39,13 +39,7 @@ const durationInDays = computed(() => {
   const departureDate = props.travel.departureDate;
   const returnDate = props.travel.returnDate;
 
-  const duration = differenceInDays(returnDate, departureDate);
+  const duration = getDifferenceInDays(returnDate, departureDate);
   return `${duration} days`;
 });
-
-function differenceInDays(date1: Date, date2: Date) {
-  const diffTime = Math.abs(date2.getTime() - date1.getTime());
-  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-  return diffDays;
-}
 </script>

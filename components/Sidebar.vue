@@ -10,13 +10,13 @@
         'flex-col gap-4': isCollapsed,
       }"
     >
-      <MyImg
+      <UIImg
         v-if="isCollapsed"
         src="images/weroad-logo-collapsed.svg"
         alt="logo"
         width="40"
       />
-      <MyImg
+      <UIImg
         v-else
         src="images/weroad-logo-expanded.svg"
         alt="logo"
@@ -45,21 +45,21 @@
         }"
       >
         <li>
-          <NavigationLink
+          <UINavigationLink
             to="/"
             :title="isCollapsed ? '' : 'Dashboard'"
             icon="house"
           />
         </li>
         <li>
-          <NavigationLink
+          <UINavigationLink
             to="/travels"
             :title="isCollapsed ? '' : 'Travels'"
             icon="earth-americas"
           />
         </li>
         <li>
-          <NavigationLink
+          <UINavigationLink
             to="/bookings"
             :title="isCollapsed ? '' : 'Bookings'"
             icon="plane-departure"
@@ -71,27 +71,27 @@
 </template>
 <script setup lang="ts">
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import NavigationLink from "~/components/NavigationLink.vue";
+import UINavigationLink from "~/components/ui/UINavigationLink.vue";
 
 const sidebar = ref<HTMLElement | null>(null);
-
 const isCollapsed = ref<boolean>(false);
+
+onMounted(() => {
+  // if is mobile viewport, collapse the sidebar
+  if (window.innerWidth < 768) {
+    isCollapsed.value = true;
+    collapseSidebar();
+  }
+});
 
 const handleClickCollapse = () => {
   isCollapsed.value = !isCollapsed.value;
+  collapseSidebar();
+};
 
+function collapseSidebar() {
   sidebar.value?.classList.toggle("min-w-[250px]");
   sidebar.value?.classList.toggle("min-w-[max-content]");
   sidebar.value?.classList.toggle("px-3");
-};
-
-// if in is mobile, collapse the sidebar
-onMounted(() => {
-  if (window.innerWidth < 768) {
-    isCollapsed.value = true;
-    sidebar.value?.classList.toggle("min-w-[250px]");
-    sidebar.value?.classList.toggle("min-w-[max-content]");
-    sidebar.value?.classList.toggle("px-3");
-  }
-});
+}
 </script>
