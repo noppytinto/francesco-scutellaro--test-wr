@@ -127,26 +127,11 @@
         </UIFieldset>
       </form>
 
-      <!-- Delete section -->
-      <section
-        class="flex items-center justify-between gap-4 rounded-md border border-dashed border-primary px-4 py-6"
-      >
-        <div>
-          <h1 class="mb-4 text-lg font-bold text-red-500">
-            Delete this booking
-          </h1>
-          <p>Once you delete a booking, there is no going back.</p>
-          <p>Please be certain.</p>
-        </div>
-
-        <UIButton
-          variant="outlined"
-          class="text-red-500"
-          @click="isDeleteModalOpen = true"
-        >
-          Delete booking
-        </UIButton>
-      </section>
+      <DeleteSection
+        title="Delete this booking"
+        button-text="Delete booking"
+        @click-delete="isDeleteModalOpen = true"
+      />
 
       <UIConfirmationModal
         v-model:open="isDeleteModalOpen"
@@ -181,6 +166,7 @@ import type { Travel } from "~/entities/travel/types";
 import { BookingRepository } from "~/respositories/BookingRepository";
 import UIAutocompleteInput from "~/components/ui/inputs/UIAutocompleteInput.vue";
 import UIConfirmationModal from "~/components/ui/UIConfirmationModal.vue";
+import DeleteSection from "~/components/DeleteSection.vue";
 
 type Props = {
   booking: Booking | undefined;

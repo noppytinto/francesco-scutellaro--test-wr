@@ -2,7 +2,7 @@
   <UIBaseModal title="Edit Travel" v-model:open="open">
     <template #default>
       <form
-        class="flex flex-col gap-8"
+        class="mb-8 flex flex-col gap-8"
         id="travel-form"
         @submit.prevent="handleSubmit"
         ref="travelForm"
@@ -59,6 +59,19 @@
           :model-value="travel?.description"
         />
       </form>
+
+      <DeleteSection
+        title="Delete this booking"
+        button-text="Delete booking"
+        @click-delete="isDeleteModalOpen = true"
+      />
+
+      <UIConfirmationModal
+        v-model:open="isDeleteModalOpen"
+        @click-yes="handleClickConfirmDelete"
+        title="Delete travel"
+        message="Are you sure you want to delete this travel?"
+      />
     </template>
 
     <template #actions>
@@ -77,6 +90,8 @@ import type { Travel } from "~/entities/travel/types";
 import { TravelRepository } from "~/respositories/TravelRepository";
 import { formatDateToYYYYMMDD } from "~/utils/date";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import DeleteSection from "~/components/DeleteSection.vue";
+import UIConfirmationModal from "~/components/ui/UIConfirmationModal.vue";
 
 type Props = {
   travel: Travel | undefined;
@@ -95,6 +110,7 @@ const emits = defineEmits<Emits>();
 const travelRepository = new TravelRepository();
 const thumbnailUrl = ref("");
 const travelForm = ref<HTMLFormElement | null>(null);
+const isDeleteModalOpen = ref(false);
 const departureDate = computed(() => {
   return props.travel ? formatDateToYYYYMMDD(props.travel.departureDate) : "";
 });
@@ -145,5 +161,12 @@ function handleSubmit() {
   travelRepository.update(updatedTravel);
 
   emits("submit");
+}
+
+function handleClickConfirmDelete() {
+  if (!props.travel) return;
+
+  travelRepository.delete(props.travel.id);
+  open.value = false;
 }
 </script>
