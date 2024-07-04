@@ -1,19 +1,47 @@
 <template>
   <div class="w-full">
     <div class="flex flex-col">
-      <div class="flex">
+      <div class="flex border-b border-gray-300">
         <div
           v-for="(tab, index) in tabs"
           :key="tab.id"
           @click="handleClickTab(tab)"
           :class="{
-            'bg-gray-200': currentActiveTab === tab.id,
+            'font-semibold text-black': currentActiveTab === tab.id,
             'bg-white': currentActiveTab !== tab.id,
-            'border-r border-gray-300': index !== tabs.length - 1,
           }"
-          class="cursor-pointer px-10 py-2"
+          class="relative cursor-pointer px-10 py-4 text-my-neutral-300"
         >
           {{ tab.title }}
+
+          <!--          active circle-->
+          <span
+            class="absolute bottom-0 right-1/2 flex h-5 w-5 translate-x-1/2 translate-y-1/2 items-center justify-center"
+          >
+            <span
+              class="absolute inline-flex h-full w-full rounded-full opacity-50"
+              :class="{
+                'animate-pulse bg-primary opacity-100':
+                  currentActiveTab === tab.id,
+                'opacity-0': currentActiveTab !== tab.id,
+              }"
+            ></span>
+            <span
+              class="relative inline-flex h-3 w-3 rounded-full"
+              :class="{
+                'bg-primary': currentActiveTab === tab.id,
+                'bg-my-neutral-100': currentActiveTab !== tab.id,
+              }"
+            ></span>
+          </span>
+
+          <!--          <div-->
+          <!--            class="absolute bottom-0 right-1/2 h-4 w-4 translate-x-1/2 translate-y-1/2 transform animate-pulse rounded-full"-->
+          <!--            :class="{-->
+          <!--              'bg-primary': currentActiveTab === tab.id,-->
+          <!--              'bg-my-neutral-50': currentActiveTab !== tab.id,-->
+          <!--            }"-->
+          <!--          />-->
         </div>
       </div>
       <Transition name="slide-left" mode="out-in">

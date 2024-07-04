@@ -12,7 +12,12 @@
 
     <template #actions>
       <!--      next and previous buttons-->
-      <UIButton :disabled="currentActiveTab <= 0" @click="handleClickPrevious">
+
+      <UIButton
+        :disabled="currentActiveTab <= 0"
+        @click="handleClickPrevious"
+        class="mr-4"
+      >
         Previous
       </UIButton>
       <UIButton
@@ -21,12 +26,17 @@
       >
         Next
       </UIButton>
-      <UIButton
-        :disabled="currentActiveTab !== tabs.length - 1"
-        form="booking-form"
-        type="submit"
-        >Save</UIButton
-      >
+
+      <div class="grow" />
+
+      <div>
+        <UIButton
+          :disabled="currentActiveTab !== tabs.length - 1"
+          form="booking-form"
+          type="submit"
+          >Save</UIButton
+        >
+      </div>
     </template>
   </UIBaseModal>
 </template>

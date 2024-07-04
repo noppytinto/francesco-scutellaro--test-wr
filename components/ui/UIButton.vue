@@ -11,7 +11,7 @@
       'text-primary duration-200 hover:bg-my-neutral-50': variant === 'text',
       'text-my-neutral-300 duration-200 hover:text-primary':
         variant === 'iconOnly',
-      'cursor-not-allowed bg-my-neutral-100 opacity-50 hover:shadow-none active:scale-100':
+      'cursor-not-allowed border-none bg-my-neutral-100 opacity-35 hover:shadow-none active:scale-100':
         disabled,
     }"
     :disabled
