@@ -18,3 +18,16 @@ export function parseToCustomer(data: APICustomer): Customer {
     profilePicture: data.profile_picture,
   };
 }
+
+export function writeToCustomerAPI(data: Customer): APICustomer {
+  return {
+    id: data.id,
+    first_name: data.firstName,
+    last_name: data.lastName,
+    email: data.email,
+    phone_number: data.phoneNumber,
+    age: data.age,
+    gender: data.gender,
+    profile_picture: data.profilePicture,
+  };
+}

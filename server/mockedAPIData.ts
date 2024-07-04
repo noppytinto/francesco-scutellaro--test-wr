@@ -2,7 +2,7 @@ import { APIBooking } from "~/entities/booking/types";
 import type { APITravel } from "~/entities/travel/types";
 import { APICustomer } from "~/entities/customer/types";
 
-export const getMockedTravelsData = (): APITravel[] => [
+export const getTravelsResponseData = (): APITravel[] => [
   {
     id: "1",
     name: "Iceland: waterfalls and volcanoes",
@@ -212,7 +212,7 @@ export const getMockedTravelsData = (): APITravel[] => [
   },
 ];
 
-export const getMockedCustomersData = (): APICustomer[] => [
+export const getCustomersResponseData = (): APICustomer[] => [
   {
     id: "1",
     first_name: "John",
@@ -415,9 +415,9 @@ export const getMockedCustomersData = (): APICustomer[] => [
   },
 ];
 
-export const getMockedBookingsData = (): APIBooking[] => {
-  const mockedTravels = getMockedTravelsData();
-  const mockedCustomers = getMockedCustomersData();
+export const getBookingsResponseData = (): APIBooking[] => {
+  const mockedTravels = getTravelsResponseData();
+  const mockedCustomers = getCustomersResponseData();
 
   return [
     {

@@ -5,7 +5,7 @@ import {
   STORAGE_KEYS,
   type StorageKey,
 } from "~/utils/localStorage";
-import { getMockedTravelsData } from "~/server/mockedAPIData";
+import { getTravelsResponseData } from "~/server/mockedAPIData";
 import type { IRepository } from "~/respositories/IRepository";
 
 export class TravelRepository implements IRepository<Travel> {
@@ -16,49 +16,47 @@ export class TravelRepository implements IRepository<Travel> {
   }
 
   init() {
-    if (!getFromLocalStorage(this.storageKey))
-      saveToLocalStorage(STORAGE_KEYS.TRAVELS_DATA, getMockedTravelsData());
-  }
-
-  create(value: Travel) {
-    const data = getFromLocalStorage<APITravel[]>(this.storageKey);
-    const bookings = data ? data.map(parseToTravel) : [];
-    bookings.push(value);
-    saveToLocalStorage(this.storageKey, bookings);
+    if (!getFromLocalStorage(this.storageKey)) {
+      saveToLocalStorage(this.storageKey, getTravelsResponseData());
+    }
   }
 
   getAll() {
-    const data = getFromLocalStorage<APITravel[]>(this.storageKey);
-    return data ? data.map(parseToTravel) : [];
+    const data = getFromLocalStorage<APITravel[]>(this.storageKey) || [];
+    return data.map(parseToTravel);
   }
 
   getById(id: string) {
-    const data = getFromLocalStorage<APITravel[]>(this.storageKey);
-    const bookings = data ? data.map(parseToTravel) : [];
-    const result = bookings.find((booking) => booking.id === id);
-
+    const allData = getFromLocalStorage<APITravel[]>(this.storageKey) || [];
+    const parsedData = allData.map(parseToTravel);
+    const result = parsedData.find((d) => d.id === id);
     return result || null;
   }
 
+  create(value: Travel) {
+    const valueToWrite = writeToTravelAPI(value);
+    const allData = getFromLocalStorage<APITravel[]>(this.storageKey) || [];
+    allData.push(valueToWrite);
+    saveToLocalStorage(this.storageKey, allData);
+  }
+
   update(value: Travel) {
-    const data = getFromLocalStorage<APITravel[]>(this.storageKey);
-    const bookings = data ? data.map(parseToTravel) : [];
-    const index = bookings.findIndex((booking) => booking.id === value.id);
+    const allData = getFromLocalStorage<APITravel[]>(this.storageKey) || [];
+    const index = allData.findIndex((d) => d.id === value.id);
 
     if (index !== -1) {
-      bookings[index] = value;
-      saveToLocalStorage(this.storageKey, bookings);
+      allData[index] = writeToTravelAPI(value);
+      saveToLocalStorage(this.storageKey, allData);
     }
   }
 
   delete(id: string) {
-    const data = getFromLocalStorage<APITravel[]>(this.storageKey);
-    const bookings = data ? data.map(parseToTravel) : [];
-    const index = bookings.findIndex((booking) => booking.id === id);
+    const allData = getFromLocalStorage<APITravel[]>(this.storageKey) || [];
+    const index = allData.findIndex((d) => d.id === id);
 
     if (index !== -1) {
-      bookings.splice(index, 1);
-      saveToLocalStorage(this.storageKey, bookings);
+      allData.splice(index, 1);
+      saveToLocalStorage(this.storageKey, allData);
     }
   }
 }
@@ -75,5 +73,18 @@ export function parseToTravel(data: APITravel): Travel {
     averageRating: data.average_rating
       ? Number(data.average_rating)
       : undefined,
+  };
+}
+
+export function writeToTravelAPI(data: Travel): APITravel {
+  return {
+    id: data.id,
+    name: data.name,
+    thumbnail_url: data.thumbnailURL,
+    description: data.description,
+    departure_date: data.departureDate.toISOString(),
+    return_date: data.returnDate.toISOString(),
+    price_per_person: String(data.pricePerPerson),
+    average_rating: data.averageRating ? String(data.averageRating) : undefined,
   };
 }

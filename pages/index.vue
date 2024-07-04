@@ -14,6 +14,7 @@
       />
     </div>
 
+    <!-- ==================== Recent bookings ====================-->
     <DashboardSection title="Recent bookings" seeAllLink="/bookings">
       <ul
         class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-5"
@@ -24,6 +25,7 @@
       </ul>
     </DashboardSection>
 
+    <!-- ==================== Latest added travels ====================-->
     <DashboardSection title="Latest added travels" seeAllLink="/travels">
       <ul
         class="grid grid-cols-1 gap-14 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-7"

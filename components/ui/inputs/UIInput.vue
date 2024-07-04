@@ -8,6 +8,7 @@
       :placeholder
       :required
       :name
+      :min
     />
     <slot name="append" />
   </UIBaseInput>
@@ -18,11 +19,12 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import UIBaseInput from "~/components/ui/inputs/UIBaseInput.vue";
 
 type Props = {
-  icon?: string;
+  icon?: string | [string, string];
   type?: string;
   placeholder?: string;
   name?: string;
   required?: boolean;
+  min?: number;
 };
 
 withDefaults(defineProps<Props>(), {
