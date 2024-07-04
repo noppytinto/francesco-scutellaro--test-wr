@@ -3,7 +3,7 @@
     <div class="flex flex-col">
       <div class="flex border-b border-gray-300">
         <div
-          v-for="(tab, index) in tabs"
+          v-for="tab in tabs"
           :key="tab.id"
           @click="handleClickTab(tab)"
           :class="{
@@ -14,7 +14,7 @@
         >
           {{ tab.title }}
 
-          <!--          active circle-->
+          <!-- active indicator -->
           <span
             class="absolute bottom-0 right-1/2 flex h-5 w-5 translate-x-1/2 translate-y-1/2 items-center justify-center"
           >
@@ -34,16 +34,9 @@
               }"
             ></span>
           </span>
-
-          <!--          <div-->
-          <!--            class="absolute bottom-0 right-1/2 h-4 w-4 translate-x-1/2 translate-y-1/2 transform animate-pulse rounded-full"-->
-          <!--            :class="{-->
-          <!--              'bg-primary': currentActiveTab === tab.id,-->
-          <!--              'bg-my-neutral-50': currentActiveTab !== tab.id,-->
-          <!--            }"-->
-          <!--          />-->
         </div>
       </div>
+
       <Transition name="slide-left" mode="out-in">
         <div :key="currentActiveTab" class="mt-4">
           <slot :activeTab="currentActiveTab" />
@@ -72,7 +65,7 @@ const handleClickTab = (tab: Tab) => {
 </script>
 
 <style>
-.slide-left-enter-active {
+s .slide-left-enter-active {
   transition: all 0.2s ease-out;
 }
 

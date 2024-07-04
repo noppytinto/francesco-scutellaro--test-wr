@@ -19,10 +19,12 @@ type Props = {
   height?: string;
   placeholder?: string | number[];
   preload?: boolean;
+  fit?: "fill" | "contain" | "cover" | "none" | "scale-down";
 };
 
 withDefaults(defineProps<Props>(), {
   placeholder: () => [20, 20, 75, 5],
+  fit: "cover",
 });
 
 const isLoading = ref(true);

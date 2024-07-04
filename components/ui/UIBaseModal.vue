@@ -37,7 +37,7 @@
           />
         </header>
 
-        <div class="p-5">
+        <div class="grow p-5">
           <slot />
         </div>
 
