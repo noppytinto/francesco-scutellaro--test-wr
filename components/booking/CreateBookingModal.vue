@@ -1,7 +1,10 @@
 <template>
   <UIBaseModal title="Create new booking" v-model:open="open">
     <template #default>
-      <UITabbedView :tabs="tabs" v-model:current-active-tab="currentActiveTab">
+      <UITabbedView
+        :tabs="tabsConfig"
+        v-model:current-active-tab="currentActiveTab"
+      >
         <template #default="{ activeTab }">
           <div v-if="activeTab === 0">
             <form id="travel-form" class="flex flex-col gap-8 px-6 py-16">
@@ -107,7 +110,7 @@
         Previous
       </UIButton>
       <UIButton
-        :disabled="currentActiveTab >= tabs.length - 1"
+        :disabled="currentActiveTab >= tabsConfig.length - 1"
         @click="handleClickNext"
       >
         Next
@@ -117,7 +120,7 @@
 
       <div>
         <UIButton
-          :disabled="currentActiveTab !== tabs.length - 1"
+          :disabled="currentActiveTab !== tabsConfig.length - 1"
           form="booking-form"
           type="submit"
         >
@@ -145,6 +148,9 @@ import {
 } from "~/entities/booking/types";
 import { USER_GENDER, type UserGender } from "~/entities/customer/types";
 
+// ====================================================
+// STATE & DATA
+// ====================================================
 const travelRepository = new TravelRepository();
 const bookingRepository = new BookingRepository();
 const allTravels = ref<Travel[]>([]);
@@ -157,11 +163,23 @@ const profilePictureURL = ref("");
 const gender = ref<UserGender | undefined>(undefined);
 const paymentMethod = ref<PaymentMethod | undefined>(undefined);
 
+const tabsConfig = ref<Tab[]>([
+  { title: "Select travel", id: 0 },
+  { title: "Fill customer data", id: 1 },
+  { title: "Select payment method", id: 2 },
+]);
+
+// ====================================================
+// LIFECYCLE
+// ====================================================
 onMounted(() => {
   allTravels.value = travelRepository.getAll();
   allBookings.value = bookingRepository.getAll();
 });
 
+// ====================================================
+// WATCHERS
+// ====================================================
 watch(selectedTravelId, (value) => {
   const travel = allTravels.value.find((t) => t.id === value);
   travelThumbnailURL.value = travel?.thumbnailURL ?? "";
@@ -172,12 +190,9 @@ const open = defineModel<boolean>("open", {
   required: true,
 });
 
-const tabs = ref<Tab[]>([
-  { title: "Select travel", id: 0 },
-  { title: "Fill customer data", id: 1 },
-  { title: "Select payment method", id: 2 },
-]);
-
+// ====================================================
+// FUNCTIONS
+// ====================================================
 const handleClickPrevious = () => {
   if (currentActiveTab.value > 0) {
     currentActiveTab.value--;
@@ -185,7 +200,7 @@ const handleClickPrevious = () => {
 };
 
 const handleClickNext = () => {
-  if (currentActiveTab.value < tabs.value.length - 1) {
+  if (currentActiveTab.value < tabsConfig.value.length - 1) {
     currentActiveTab.value++;
   }
 };
