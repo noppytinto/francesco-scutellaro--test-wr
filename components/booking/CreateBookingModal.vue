@@ -139,13 +139,11 @@
                 </UISelect>
               </UILabel>
 
-              <UILabel text="Additional Notes">
-                <UITextarea
-                  label="Additional notes"
-                  name="additionalNotes"
-                  :model-value="tempInternalNotes"
-                />
-              </UILabel>
+              <UITextarea
+                label="Additional notes"
+                name="additionalNotes"
+                :model-value="tempInternalNotes"
+              />
             </form>
           </div>
         </template>

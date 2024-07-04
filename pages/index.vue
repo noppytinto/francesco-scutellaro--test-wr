@@ -19,7 +19,7 @@
       <ul
         class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-5"
       >
-        <li v-for="booking in bookings?.slice(0, 5)" :key="booking.id">
+        <li v-for="booking in recentBookings" :key="booking.id">
           <BookingCard :booking="booking" />
         </li>
       </ul>
@@ -30,7 +30,7 @@
       <ul
         class="grid grid-cols-1 gap-14 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-7"
       >
-        <li v-for="travel in travels?.slice(0, 6)" :key="travel.id">
+        <li v-for="travel in recentTravels" :key="travel.id">
           <TravelCard :travel="travel" />
         </li>
       </ul>
@@ -62,6 +62,8 @@ const totalRevenue = computed(() => {
 });
 const totalTravels = computed(() => String(travels.value?.length) || "");
 const totalBookings = computed(() => String(bookings.value?.length) || "");
+const recentBookings = computed(() => bookings.value?.slice(-5).reverse());
+const recentTravels = computed(() => travels.value?.slice(-6).reverse());
 
 watchEffect(async () => {
   const travelRepository = new TravelRepository();
