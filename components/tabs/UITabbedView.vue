@@ -11,7 +11,7 @@
             'bg-white': currentActiveTab !== tab.id,
             'border-r border-gray-300': index !== tabs.length - 1,
           }"
-          class="cursor-pointer px-4 py-2"
+          class="cursor-pointer px-10 py-2"
         >
           {{ tab.title }}
         </div>
@@ -26,16 +26,17 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
 import type { Tab } from "~/components/tabs/types";
 
 type Props = {
   tabs: Tab[];
-  activeTab: number;
 };
-const props = defineProps<Props>();
+defineProps<Props>();
 
-const currentActiveTab = ref(props.activeTab);
+const currentActiveTab = defineModel<number>("currentActiveTab", {
+  default: 0,
+  required: true,
+});
 
 const handleClickTab = (tab: Tab) => {
   currentActiveTab.value = tab.id;
