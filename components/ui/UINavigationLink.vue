@@ -3,7 +3,7 @@
     <div
       class="flex items-center gap-1 rounded-md py-2 text-secondary transition-colors hover:bg-my-neutral-100"
       :class="{
-        'justify-center': !title,
+        'justify-center': !title || iconOnly,
         'bg-my-neutral-50': $route.path === to,
       }"
     >
@@ -20,7 +20,7 @@
         size="lg"
       />
       <p
-        v-if="title"
+        v-if="title && !iconOnly"
         :class="[
           {
             'font-bold': $route.path === to,
@@ -51,6 +51,7 @@ type Props = {
   icon: string[] | string;
   iconClass?: string;
   titleClass?: string;
+  iconOnly?: boolean;
 };
 
 defineProps<Props>();

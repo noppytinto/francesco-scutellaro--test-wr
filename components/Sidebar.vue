@@ -49,22 +49,25 @@
         <li>
           <UINavigationLink
             to="/"
-            :title="isCollapsed ? '' : 'Dashboard'"
+            title="Dashboard"
             icon="house"
+            :icon-only="isCollapsed"
           />
         </li>
         <li>
           <UINavigationLink
             to="/travels"
-            :title="isCollapsed ? '' : 'Travels'"
+            title="Travels"
             icon="earth-americas"
+            :icon-only="isCollapsed"
           />
         </li>
         <li>
           <UINavigationLink
             to="/bookings"
-            :title="isCollapsed ? '' : 'Bookings'"
+            title="Bookings"
             icon="plane-departure"
+            :icon-only="isCollapsed"
           />
         </li>
       </ul>
