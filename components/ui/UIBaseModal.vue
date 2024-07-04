@@ -13,13 +13,12 @@
           class="flex items-center justify-between border-b border-my-neutral-100 pb-3"
         >
           <h2 class="text-xl font-bold">{{ title }}</h2>
-          <button @click="handleClose">
-            <FontAwesomeIcon
-              icon="xmark"
-              size="xl"
-              class="cursor-pointer text-my-neutral-300 transition-colors hover:text-primary"
-            />
-          </button>
+          <UIButton
+            variant="iconOnly"
+            icon="xmark"
+            icon-size="xl"
+            @click="handleClose"
+          />
         </header>
 
         <slot />

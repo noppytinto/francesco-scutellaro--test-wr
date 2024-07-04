@@ -1,8 +1,6 @@
 <template>
-  <div
-    class="flex items-center rounded-md bg-my-neutral-50 pl-3 focus-within:ring-1 focus-within:ring-tertiary"
-  >
-    <FontAwesomeIcon v-if="icon" :icon class="text-gray-500" />
+  <UIBaseInput class="flex items-center">
+    <FontAwesomeIcon v-if="icon" :icon class="ml-3 text-gray-500" />
     <input
       v-model="modelValue"
       :type
@@ -12,11 +10,12 @@
       :name
     />
     <slot name="append" />
-  </div>
+  </UIBaseInput>
 </template>
 
 <script setup lang="ts">
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import UIBaseInput from "~/components/ui/inputs/UIBaseInput.vue";
 
 type Props = {
   icon?: string;
