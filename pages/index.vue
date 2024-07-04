@@ -40,9 +40,9 @@
 
 <script setup lang="ts">
 import { type Travel } from "~/entities/travel/types";
-import DashboardSection from "~/components/DashboardSection.vue";
+import DashboardSection from "~/components/dashboard/DashboardSection.vue";
 import { type Booking } from "~/entities/booking/types";
-import DashboardWidget from "~/components/DashboardWidget.vue";
+import DashboardWidget from "~/components/dashboard/DashboardWidget.vue";
 import { TravelRepository } from "~/respositories/TravelRepository";
 import { BookingRepository } from "~/respositories/BookingRepository";
 

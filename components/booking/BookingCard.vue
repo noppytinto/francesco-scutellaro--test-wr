@@ -34,7 +34,7 @@
 
 <script setup lang="ts">
 import type { Booking } from "~/entities/booking/types";
-import PaymentTag from "~/components/PaymentTag.vue";
+import PaymentTag from "~/components/booking/PaymentTag.vue";
 
 type Props = {
   booking: Booking;

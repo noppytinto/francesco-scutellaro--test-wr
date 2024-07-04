@@ -79,10 +79,6 @@ watch(searchValue, (value) => {
 // FUNCTIONS
 // ====================================================
 function handleClickRow(travel: Travel) {
-  console.log(
-    "fffffffffffffffffffffffffffffffffffffffffff clickedTravel:",
-    travel,
-  );
   isEditModalOpen.value = true;
   clickedTravel.value = toRaw(travel);
 }
