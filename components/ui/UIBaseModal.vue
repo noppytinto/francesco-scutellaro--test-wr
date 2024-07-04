@@ -2,13 +2,25 @@
   <teleport to="body">
     <div
       v-if="open"
-      class="fixed inset-0 z-10 flex animate-fade items-end justify-center bg-black bg-opacity-50 p-2 backdrop-blur-sm sm:items-center sm:p-4"
+      class="fixed inset-0 z-10 flex animate-fade items-end justify-center bg-black p-2 backdrop-blur-sm sm:items-center sm:p-4"
       @click="handleClickOutside"
+      :class="{
+        // make the background darker if the modal is small
+        'bg-opacity-50': !small,
+        'bg-opacity-75': small,
+      }"
     >
       <!-- actual modal -->
       <div
-        class="flex max-h-[80%] w-full flex-col justify-between gap-8 overflow-x-auto rounded-md bg-white shadow-lg sm:w-9/12 xl:w-2/3 2xl:w-5/12"
+        class="flex max-h-[80%] w-full flex-col justify-between gap-8 overflow-x-auto rounded-md bg-white shadow-lg"
         @click.stop
+        :class="[
+          {
+            'sm:w-9/12 xl:w-2/3 2xl:w-5/12': !small,
+            'sm:w-1/5': small,
+          },
+          $attrs.class,
+        ]"
       >
         <header
           class="sticky top-0 z-10 flex items-center justify-between border-b border-my-neutral-100 bg-white p-5"
@@ -44,15 +56,15 @@ type Props = {
   title?: string;
   open: boolean;
   closeOnClickOutside?: boolean;
+  small?: boolean;
 };
 
-const props = defineProps<Props>();
-
-type Emit = {
+type Emits = {
   (event: "update:open", value: boolean): void;
 };
 
-const emit: Emit = defineEmits();
+const props = defineProps<Props>();
+const emit = defineEmits<Emits>();
 
 const handleClose = () => {
   console.log("close");

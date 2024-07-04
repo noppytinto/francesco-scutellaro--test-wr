@@ -15,7 +15,7 @@
     </template>
     <template #default>
       <form
-        class="flex flex-col gap-8"
+        class="mb-4 flex flex-col gap-8"
         id="travel-form"
         @submit.prevent="handleSubmit"
         ref="travelForm"
@@ -126,6 +126,34 @@
           />
         </UIFieldset>
       </form>
+
+      <!-- Delete section -->
+      <section
+        class="flex items-center justify-between gap-4 rounded-md border border-dashed border-primary px-4 py-6"
+      >
+        <div>
+          <h1 class="mb-4 text-lg font-bold text-red-500">
+            Delete this booking
+          </h1>
+          <p>Once you delete a booking, there is no going back.</p>
+          <p>Please be certain.</p>
+        </div>
+
+        <UIButton
+          variant="outlined"
+          class="text-red-500"
+          @click="isDeleteModalOpen = true"
+        >
+          Delete booking
+        </UIButton>
+      </section>
+
+      <UIConfirmationModal
+        v-model:open="isDeleteModalOpen"
+        @click-yes="handleClickConfirmDelete"
+        title="Delete booking"
+        message="Are you sure you want to delete this booking?"
+      />
     </template>
 
     <template #actions>
@@ -152,6 +180,7 @@ import UIFieldset from "~/components/ui/inputs/UIFieldset.vue";
 import type { Travel } from "~/entities/travel/types";
 import { BookingRepository } from "~/respositories/BookingRepository";
 import UIAutocompleteInput from "~/components/ui/inputs/UIAutocompleteInput.vue";
+import UIConfirmationModal from "~/components/ui/UIConfirmationModal.vue";
 
 type Props = {
   booking: Booking | undefined;
@@ -173,6 +202,7 @@ const bookingRepository = new BookingRepository();
 const travelThumbnailURL = ref("");
 const travelForm = ref<HTMLFormElement | null>(null);
 const allTravel = ref<Travel[]>([]);
+const isDeleteModalOpen = ref(false);
 
 const open = defineModel<boolean>("open", {
   default: false,
@@ -233,6 +263,15 @@ function handleSubmit() {
 
   bookingRepository.update(updatedBooking);
 
+  emits("submit");
+}
+
+function handleClickConfirmDelete() {
+  if (!props.booking) return;
+
+  open.value = false;
+  isDeleteModalOpen.value = false;
+  bookingRepository.delete(props.booking.id);
   emits("submit");
 }
 </script>
