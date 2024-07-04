@@ -7,7 +7,7 @@
     >
       <!-- actual modal -->
       <div
-        class="flex max-h-[80%] w-full flex-col justify-between gap-8 overflow-x-auto rounded-md bg-white shadow-lg sm:w-9/12 xl:w-2/5"
+        class="flex max-h-[80%] w-full flex-col justify-between gap-8 overflow-x-auto rounded-md bg-white shadow-lg sm:w-9/12 xl:w-2/3 2xl:w-5/12"
         @click.stop
       >
         <header
