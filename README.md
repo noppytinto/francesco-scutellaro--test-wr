@@ -8,7 +8,7 @@ npm run dev
 
 ## Deploy
 
-[👀 Live Website](https://francesco-scutellaro-test-wr.netlify.app)
+[👀 Live Website](https://francesco-scutellaro-test-wr.netlify.app) (Chrome is recommended)
 
 
 ## Figma design
