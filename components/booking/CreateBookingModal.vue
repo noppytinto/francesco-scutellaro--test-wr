@@ -181,9 +181,9 @@
   </UIBaseModal>
 </template>
 <script setup lang="ts">
-import type { Tab } from "~/components/tabs/types";
+import type { Tab } from "~/components/ui/tabs/types";
 import UIBaseModal from "~/components/ui/UIBaseModal.vue";
-import UITabbedView from "~/components/tabs/UITabbedView.vue";
+import UITabbedView from "~/components/ui/tabs/UITabbedView.vue";
 import UISelect from "~/components/ui/inputs/UISelect.vue";
 import UIInput from "~/components/ui/inputs/UIInput.vue";
 import UILabel from "~/components/ui/UILabel.vue";

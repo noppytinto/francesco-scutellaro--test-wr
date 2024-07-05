@@ -74,8 +74,8 @@
       </form>
 
       <DeleteSection
-        title="Delete this booking"
-        button-text="Delete booking"
+        title="Delete this travel"
+        button-text="Delete travel"
         @click-delete="isDeleteModalOpen = true"
       />
 

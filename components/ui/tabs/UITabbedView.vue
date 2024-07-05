@@ -47,7 +47,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Tab } from "~/components/tabs/types";
+import type { Tab } from "~/components/ui/tabs/types";
 
 type Props = {
   tabs: Tab[];
