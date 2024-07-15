@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev",
+    "dev": "concurrently \"npx json-server db.json --port 3001\" \"nuxt dev\"",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
@@ -13,8 +13,12 @@
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
     "@fortawesome/vue-fontawesome": "^3.0.8",
     "@nuxt/image": "^1.7.0",
+    "@pinia/nuxt": "^0.5.1",
     "@tailwindcss/container-queries": "^0.1.1",
+    "concurrently": "^8.2.2",
+    "json-server": "^1.0.0-beta.1",
     "nuxt": "^3.12.2",
+    "pinia": "^2.1.7",
     "vue": "latest"
   },
   "devDependencies": {
@@ -30,5 +34,8 @@
   },
   "optionalDependencies": {
     "@rollup/rollup-linux-x64-gnu": "^4.18.0"
+  },
+  "overrides": {
+    "vue": "latest"
   }
 }

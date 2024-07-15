@@ -16,15 +16,15 @@
             >
               <UILabel text="Travel">
                 <UIAutocompleteInput
-                  :itemTitles="allTravels.map((t) => t.name)"
-                  :itemIds="allTravels.map((t) => t.id)"
+                  :itemTitles="travels.map((t) => t.name)"
+                  :itemIds="travels.map((t) => t.id)"
                   v-model:model-value="selectedTravelId"
                   required
                 >
                   <template #append>
                     <UIImg
-                      v-if="travelThumbnailURL"
-                      :src="travelThumbnailURL"
+                      v-if="tempTravelThumbnailURL"
+                      :src="tempTravelThumbnailURL"
                       alt="thumbnail"
                       width="80"
                       class="m-2 aspect-square rounded transition-transform hover:scale-150 hover:shadow-lg"
@@ -45,12 +45,12 @@
                 <UIInput
                   name="profilePicture"
                   type="url"
-                  v-model="profilePictureURL"
+                  v-model="tempProfilePictureURL"
                 >
                   <template #append>
                     <UIImg
-                      v-if="profilePictureURL"
-                      :src="profilePictureURL"
+                      v-if="tempProfilePictureURL"
+                      :src="tempProfilePictureURL"
                       alt="thumbnail"
                       width="80"
                       class="m-2 rounded-md transition-transform hover:scale-150 hover:shadow-lg"
@@ -188,9 +188,6 @@ import UISelect from "~/components/ui/inputs/UISelect.vue";
 import UIInput from "~/components/ui/inputs/UIInput.vue";
 import UILabel from "~/components/ui/UILabel.vue";
 import UIAutocompleteInput from "~/components/ui/inputs/UIAutocompleteInput.vue";
-import { TravelRepository } from "~/respositories/TravelRepository";
-import type { Travel } from "~/entities/travel/types";
-import { BookingRepository } from "~/respositories/BookingRepository";
 import {
   type Booking,
   PAYMENT_METHODS,
@@ -199,6 +196,8 @@ import {
 import { USER_GENDER, type UserGender } from "~/entities/customer/types";
 import { getRandomNumber } from "~/utils/number";
 import UITextarea from "~/components/ui/UITextarea.vue";
+import { useTravelsStore } from "~/store/travelsStore";
+import { useBookingsStore } from "~/store/bookingsStore";
 
 type Emits = {
   (event: "submit"): void;
@@ -208,24 +207,23 @@ const emits = defineEmits<Emits>();
 // ====================================================
 // STATE & DATA
 // ====================================================
-const travelRepository = new TravelRepository();
-const bookingRepository = new BookingRepository();
-const allTravels = ref<Travel[]>([]);
-const allBookings = ref<Booking[]>([]);
+const travelsStore = useTravelsStore();
+const bookingsStore = useBookingsStore();
+const { travels } = storeToRefs(travelsStore);
 const currentActiveTab = ref(0);
 const selectedTravelId = ref<string | undefined>(undefined);
-const travelThumbnailURL = ref("");
-const profilePictureURL = ref("");
+const tempTravelThumbnailURL = ref("");
+const tempProfilePictureURL = ref("");
 const bookingFormData = ref<Booking>();
-const travelForm = ref<HTMLFormElement | null>(null);
-const customerForm = ref<HTMLFormElement | null>(null);
-const paymentForm = ref<HTMLFormElement | null>(null);
 // used to store the data temporarily
 // as the user goes through the form
 const tempTravelData = ref<Booking["travel"] | undefined>(undefined);
 const tempCustomerData = ref<Booking["customer"] | undefined>(undefined);
 const tempPaymentData = ref<Booking["paymentMethod"] | undefined>(undefined);
 const tempInternalNotes = ref<string | undefined>(undefined);
+const travelForm = ref<HTMLFormElement | null>(null);
+const customerForm = ref<HTMLFormElement | null>(null);
+const paymentForm = ref<HTMLFormElement | null>(null);
 
 const tabsConfig = ref<Tab[]>([
   { title: "Select travel", id: 0 },
@@ -240,19 +238,11 @@ const currentForm = computed(() => {
 });
 
 // ====================================================
-// LIFECYCLE
-// ====================================================
-onMounted(() => {
-  allTravels.value = travelRepository.getAll();
-  allBookings.value = bookingRepository.getAll();
-});
-
-// ====================================================
 // WATCHERS
 // ====================================================
 watch(selectedTravelId, (value) => {
-  const travel = allTravels.value.find((t) => t.id === value);
-  travelThumbnailURL.value = travel?.thumbnailURL ?? "";
+  const travel = travels.value.find((t) => t.id === value);
+  tempTravelThumbnailURL.value = travel?.thumbnailURL ?? "";
 });
 
 const open = defineModel<boolean>("open", {
@@ -278,7 +268,7 @@ function goToNextTab() {
 function handleSubmitTravelForm() {
   if (!selectedTravelId.value) return;
 
-  tempTravelData.value = allTravels.value.find(
+  tempTravelData.value = travels.value.find(
     (t) => t.id === selectedTravelId.value,
   );
 
@@ -297,7 +287,7 @@ function handleSubmitCustomerForm() {
     email: formData.get("email") as string,
     phoneNumber: formData.get("phone") as string,
     gender: formData.get("gender") as UserGender,
-    profilePicture: profilePictureURL.value,
+    profilePicture: tempProfilePictureURL.value,
   };
 
   goToNextTab();
@@ -316,9 +306,21 @@ function handleSubmitPaymentForm() {
     internalNotes: formData.get("additionalNotes") as string,
   };
 
-  bookingRepository.create(bookingFormData.value);
+  bookingsStore.create(bookingFormData.value);
 
   open.value = false;
+  resetTempFormData();
   emits("submit");
+}
+
+function resetTempFormData() {
+  tempTravelData.value = undefined;
+  tempCustomerData.value = undefined;
+  tempPaymentData.value = undefined;
+  tempInternalNotes.value = undefined;
+  selectedTravelId.value = undefined;
+  tempProfilePictureURL.value = "";
+  tempTravelThumbnailURL.value = "";
+  currentActiveTab.value = 0;
 }
 </script>

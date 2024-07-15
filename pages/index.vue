@@ -39,20 +39,18 @@
 </template>
 
 <script setup lang="ts">
-import { type Travel } from "~/entities/travel/types";
 import DashboardSection from "~/components/dashboard/DashboardSection.vue";
-import { type Booking } from "~/entities/booking/types";
 import DashboardWidget from "~/components/dashboard/DashboardWidget.vue";
-import { TravelRepository } from "~/respositories/TravelRepository";
-import { BookingRepository } from "~/respositories/BookingRepository";
+import { useBookingsStore } from "~/store/bookingsStore";
+import { useTravelsStore } from "~/store/travelsStore";
 
 definePageMeta({
   title: "Dashboard",
   description: "Dashboard page",
 });
 
-const travels = ref<Travel[]>();
-const bookings = ref<Booking[]>();
+const { travels } = storeToRefs(useTravelsStore());
+const { bookings } = storeToRefs(useBookingsStore());
 const totalRevenue = computed(() => {
   const tot = bookings.value?.reduce((acc, booking) => {
     return acc + booking.travel.pricePerPerson;
@@ -64,12 +62,4 @@ const totalTravels = computed(() => String(travels.value?.length) || "");
 const totalBookings = computed(() => String(bookings.value?.length) || "");
 const recentBookings = computed(() => bookings.value?.slice(-5).reverse());
 const recentTravels = computed(() => travels.value?.slice(-6).reverse());
-
-watchEffect(async () => {
-  const travelRepository = new TravelRepository();
-  travels.value = travelRepository.getAll();
-
-  const bookingRepository = new BookingRepository();
-  bookings.value = bookingRepository.getAll();
-});
 </script>

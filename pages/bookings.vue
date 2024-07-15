@@ -5,7 +5,7 @@
       <UIButton icon="plus" @click="handleClickCreate"> Create </UIButton>
     </UITableActions>
 
-    <BookingsTable :bookings="bookings" @row-click="handleClickRow" />
+    <BookingsTable :bookings="searchResults" @row-click="handleClickRow" />
 
     <EditBookingModal
       v-model:open="isEditModalOpen"
@@ -23,13 +23,13 @@
 
 <script setup lang="ts">
 import { type Booking } from "~/entities/booking/types";
-import { BookingRepository } from "~/respositories/BookingRepository";
 import BookingsTable from "~/components/booking/BookingsTable.vue";
 import UISearchInput from "~/components/ui/UISearchInput.vue";
 import UIButton from "~/components/ui/UIButton.vue";
 import UITableActions from "~/components/ui/table/UITableActions.vue";
 import CreateBookingModal from "~/components/booking/CreateBookingModal.vue";
 import EditBookingModal from "~/components/booking/EditBookingModal.vue";
+import { useBookingsStore } from "~/store/bookingsStore";
 
 definePageMeta({
   title: "Bookings",
@@ -39,35 +39,31 @@ definePageMeta({
 // ====================================================
 // STATE & DATA
 // ====================================================
-const bookingRepository = new BookingRepository();
-const bookings = ref<Booking[]>([]);
+const { bookings } = storeToRefs(useBookingsStore());
 const searchValue = ref("");
+const searchResults = ref<Booking[]>([]);
 const clickedBooking = ref<Booking | undefined>(undefined);
 const isEditModalOpen = ref(false);
 const isCreateModalOpen = ref(false);
 
 // ====================================================
-// LIFECYCLE
-// ====================================================
-onMounted(() => {
-  bookings.value = bookingRepository.getAll();
-});
-
-// ====================================================
 // WATCHERS
 // ====================================================
+watchEffect(() => {
+  searchResults.value = Array.from(bookings.value);
+});
+
 watch(searchValue, (value) => {
   // reset the table if the search value is empty
   if (!value) {
-    bookings.value = bookingRepository.getAll();
+    searchResults.value = Array.from(bookings.value);
     return;
   }
 
-  const allCustomers = bookingRepository.getAll();
-  bookings.value = allCustomers.filter(
-    (t) =>
-      t.customer.firstName.toLowerCase().includes(value.toLowerCase()) ||
-      t.customer.lastName.toLowerCase().includes(value.toLowerCase()),
+  searchResults.value = bookings.value.filter(
+    (b) =>
+      b.customer.firstName.toLowerCase().includes(value.toLowerCase()) ||
+      b.customer.lastName.toLowerCase().includes(value.toLowerCase()),
   );
 });
 
@@ -84,8 +80,5 @@ function handleClickCreate() {
   isCreateModalOpen.value = true;
 }
 
-function handleClickSubmit() {
-  // refresh the table
-  bookings.value = bookingRepository.getAll();
-}
+function handleClickSubmit() {}
 </script>

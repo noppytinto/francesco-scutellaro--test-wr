@@ -23,15 +23,15 @@
         <UIFieldset legend="Travel details">
           <UILabel text="Booked travel">
             <UIAutocompleteInput
-              :itemTitles="allTravel.map((t) => t.name)"
-              :itemIds="allTravel.map((t) => t.id)"
+              :itemTitles="travels.map((t) => t.name)"
+              :itemIds="travels.map((t) => t.id)"
               v-model:model-value="selectedTravelId"
               required
             >
               <template #append>
                 <UIImg
-                  v-if="travelThumbnailURL"
-                  :src="travelThumbnailURL"
+                  v-if="tempTravelThumbnailURL"
+                  :src="tempTravelThumbnailURL"
                   alt="thumbnail"
                   width="80"
                   class="m-2 aspect-square rounded transition-transform hover:scale-150 hover:shadow-lg"
@@ -173,20 +173,23 @@ import UIBaseModal from "~/components/ui/UIBaseModal.vue";
 import UIButton from "~/components/ui/UIButton.vue";
 import UILabel from "~/components/ui/UILabel.vue";
 import UIInput from "~/components/ui/inputs/UIInput.vue";
-import { TravelRepository } from "~/respositories/TravelRepository";
 import {
   type Booking,
   PAYMENT_METHODS,
   type PaymentMethod,
 } from "~/entities/booking/types";
-import { USER_GENDER, type UserGender } from "~/entities/customer/types";
+import {
+  type Customer,
+  USER_GENDER,
+  type UserGender,
+} from "~/entities/customer/types";
 import UISelect from "~/components/ui/inputs/UISelect.vue";
 import UIFieldset from "~/components/ui/inputs/UIFieldset.vue";
-import type { Travel } from "~/entities/travel/types";
-import { BookingRepository } from "~/respositories/BookingRepository";
 import UIAutocompleteInput from "~/components/ui/inputs/UIAutocompleteInput.vue";
 import UIConfirmationModal from "~/components/ui/UIConfirmationModal.vue";
 import DeleteSection from "~/components/DeleteSection.vue";
+import { useTravelsStore } from "~/store/travelsStore";
+import { useBookingsStore } from "~/store/bookingsStore";
 
 type Props = {
   booking: Booking | undefined;
@@ -203,23 +206,17 @@ const emits = defineEmits<Emits>();
 // STATE & DATA
 // ====================================================
 const selectedTravelId = ref<string | undefined>(undefined);
-const travelRepository = new TravelRepository();
-const bookingRepository = new BookingRepository();
-const travelThumbnailURL = ref("");
+const travelsStore = useTravelsStore();
+const bookingsStore = useBookingsStore();
+const { travels } = storeToRefs(travelsStore);
+const tempTravelThumbnailURL = ref("");
 const profilePictureURL = ref("");
 const travelForm = ref<HTMLFormElement | null>(null);
-const allTravel = ref<Travel[]>([]);
 const isDeleteModalOpen = ref(false);
 
 const open = defineModel<boolean>("open", {
   default: false,
   required: true,
-});
-// ====================================================
-// LIFECYCLE
-// ====================================================
-onMounted(() => {
-  allTravel.value = travelRepository.getAll();
 });
 
 // ====================================================
@@ -232,14 +229,14 @@ watch(
   (booking) => {
     if (!booking) return;
     selectedTravelId.value = booking.travel.id;
-    travelThumbnailURL.value = booking.travel.thumbnailURL;
+    tempTravelThumbnailURL.value = booking.travel.thumbnailURL;
     profilePictureURL.value = booking.customer.profilePicture;
   },
 );
 
 watch(selectedTravelId, (id) => {
-  const travel = allTravel.value.find((t) => t.id === id);
-  travelThumbnailURL.value = travel?.thumbnailURL || "";
+  const travel = travels.value.find((t) => t.id === id);
+  tempTravelThumbnailURL.value = travel?.thumbnailURL || "";
 });
 
 // ====================================================
@@ -252,25 +249,28 @@ function handleSubmit() {
 
   const formData = new FormData(travelForm.value!);
 
+  // gather customer data
+  const customerData: Customer = {
+    ...props.booking.customer,
+    firstName: formData.get("firstName") as string,
+    lastName: formData.get("lastName") as string,
+    age: Number(formData.get("age")),
+    email: formData.get("email") as string,
+    phoneNumber: formData.get("phoneNumber") as string,
+    gender: formData.get("gender") as UserGender,
+    profilePicture: formData.get("profilePicture") as string,
+  };
+
   // update booking
-  const updatedBooking = {
+  const updatedBooking: Booking = {
     ...props.booking,
-    travel: allTravel.value.find((t) => t.id === selectedTravelId.value)!,
-    customer: {
-      ...props.booking.customer,
-      firstName: formData.get("firstName") as string,
-      lastName: formData.get("lastName") as string,
-      age: Number(formData.get("age")),
-      email: formData.get("email") as string,
-      phoneNumber: formData.get("phoneNumber") as string,
-      gender: formData.get("gender") as UserGender,
-      profilePicture: formData.get("profilePicture") as string,
-    },
+    travel: travels.value.find((t) => t.id === selectedTravelId.value)!,
+    customer: customerData,
     paymentMethod: formData.get("paymentMethod") as PaymentMethod,
     internalNotes: formData.get("additionalNotes") as string,
   };
 
-  bookingRepository.update(updatedBooking);
+  bookingsStore.update(updatedBooking.id, updatedBooking);
 
   emits("submit");
 }
@@ -280,7 +280,7 @@ function handleClickConfirmDelete() {
 
   open.value = false;
   isDeleteModalOpen.value = false;
-  bookingRepository.delete(props.booking.id);
+  bookingsStore.delete(props.booking.id);
   emits("submit");
 }
 </script>

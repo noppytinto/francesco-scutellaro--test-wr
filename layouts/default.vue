@@ -17,15 +17,15 @@
 </template>
 <script setup lang="ts">
 import UserMenu from "~/components/UserMenu.vue";
-import { TravelRepository } from "~/respositories/TravelRepository";
-import { BookingRepository } from "~/respositories/BookingRepository";
+import { useTravelsStore } from "~/store/travelsStore";
+import { useBookingsStore } from "~/store/bookingsStore";
 
 onBeforeMount(() => {
-  const travelRepository = new TravelRepository();
-  travelRepository.init();
+  const travelsStore = useTravelsStore();
+  travelsStore.load();
 
-  const bookingsRepository = new BookingRepository();
-  bookingsRepository.init();
+  const bookingsStore = useBookingsStore();
+  bookingsStore.load();
 });
 </script>
 

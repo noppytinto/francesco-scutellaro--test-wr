@@ -1,0 +1,430 @@
+{
+  "travels": [
+    {
+      "id": "1",
+      "name": "Iceland: waterfalls and volcanoes",
+      "thumbnail_url": "https://images.unsplash.com/photo-1621959721891-d297dfd9d6ee?q=80&w=2076&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "description": "The land of fire and ice",
+      "departure_date": "2022-01-01T00:00:00.000Z",
+      "return_date": "2022-01-07T00:00:00.000Z",
+      "price_per_person": "1380"
+    },
+    {
+      "id": "2",
+      "name": "Japan: culture and tradition",
+      "thumbnail_url": "https://images.unsplash.com/photo-1504109586057-7a2ae83d1338?q=80&w=2066&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "description": "The land of the rising sun",
+      "departure_date": "2022-02-01T00:00:00.000Z",
+      "return_date": "2022-02-12T00:00:00.000Z",
+      "price_per_person": 2110
+    },
+    {
+      "id": "3",
+      "name": "Brazil: beaches and carnival",
+      "thumbnail_url": "https://images.unsplash.com/photo-1518639192441-8fce0a366e2e?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "description": "The land of the samba",
+      "departure_date": "2022-03-01T00:00:00.000Z",
+      "return_date": "2022-03-10T00:00:00.000Z",
+      "price_per_person": 950
+    },
+    {
+      "id": "4",
+      "name": "Australia: kangaroos and koalas",
+      "thumbnail_url": "https://images.unsplash.com/photo-1624138784614-87fd1b6528f8?q=80&w=2066&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "description": "The land of the kangaroo",
+      "departure_date": "2022-04-01T00:00:00.000Z",
+      "return_date": "2022-04-16T00:00:00.000Z",
+      "price_per_person": 1800
+    },
+    {
+      "id": "5",
+      "name": "France: croissants and wine",
+      "thumbnail_url": "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=2073&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "description": "The land of the croissant",
+      "departure_date": "2022-05-01T00:00:00.000Z",
+      "return_date": "2022-05-08T00:00:00.000Z",
+      "price_per_person": 1200
+    },
+    {
+      "id": "6",
+      "name": "Germany: beer and sausages",
+      "thumbnail_url": "https://images.unsplash.com/photo-1559564484-e48b3e040ff4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "description": "The land of the beer",
+      "departure_date": "2022-06-01T00:00:00.000Z",
+      "return_date": "2022-06-10T00:00:00.000Z",
+      "price_per_person": 1100
+    },
+    {
+      "id": "7",
+      "name": "Italy: pizza and pasta",
+      "thumbnail_url": "https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "description": "The land of the pizza",
+      "departure_date": "2022-07-01T00:00:00.000Z",
+      "return_date": "2022-07-11T00:00:00.000Z",
+      "price_per_person": 1300
+    },
+    {
+      "id": "8",
+      "name": "Spain: paella and flamenco",
+      "thumbnail_url": "https://images.unsplash.com/photo-1511527661048-7fe73d85e9a4?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "description": "The land of the paella",
+      "departure_date": "2022-08-01T00:00:00.000Z",
+      "return_date": "2022-08-07T00:00:00.000Z",
+      "price_per_person": 1000
+    },
+    {
+      "id": "9",
+      "name": "Portugal: fado and pastéis de nata",
+      "thumbnail_url": "https://images.unsplash.com/photo-1529699074188-d1fb8244c4ca?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "description": "The land of the fado",
+      "departure_date": "2022-09-01T00:00:00.000Z",
+      "return_date": "2022-09-10T00:00:00.000Z",
+      "price_per_person": 950
+    },
+    {
+      "id": "10",
+      "name": "Argentina: tango and asado",
+      "thumbnail_url": "https://images.unsplash.com/photo-1612900538226-0e2140aa02f6?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "description": "The land of the tango",
+      "departure_date": "2022-10-01T00:00:00.000Z",
+      "return_date": "2022-10-14T00:00:00.000Z",
+      "price_per_person": 1200
+    },
+    {
+      "id": "11",
+      "name": "Greece: Santorini Sunsets",
+      "thumbnail_url": "https://images.unsplash.com/photo-1678266561093-324802646fb2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "description": "Experience the stunning sunsets and crystal-clear waters.",
+      "departure_date": "2022-09-15T00:00:00.000Z",
+      "return_date": "2022-09-25T00:00:00.000Z",
+      "price_per_person": 1500
+    },
+    {
+      "id": "12",
+      "name": "Switzerland: Alps and Zurich",
+      "thumbnail_url": "https://images.unsplash.com/photo-1517490560101-4ffe479ef5c3?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "description": "Ski in the Swiss Alps and explore the charming city of Zurich.",
+      "departure_date": "2023-12-15T00:00:00.000Z",
+      "return_date": "2023-12-25T00:00:00.000Z",
+      "price_per_person": 2400
+    },
+    {
+      "id": "13",
+      "name": "Iceland: Northern Lights",
+      "thumbnail_url": "https://images.unsplash.com/photo-1488703480497-dfcccd4894d1?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "description": "Witness the spectacular Northern Lights and explore Iceland's unique landscapes.",
+      "departure_date": "2023-12-01T00:00:00.000Z",
+      "return_date": "2023-12-10T00:00:00.000Z",
+      "price_per_person": 2200
+    },
+    {
+      "id": "14",
+      "name": "Australia: Surf and Outback",
+      "thumbnail_url": "https://images.unsplash.com/photo-1503022932596-500eb8cca2d8?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "description": "Experience the vibrant city life and rugged outback adventures.",
+      "departure_date": "2023-02-10T00:00:00.000Z",
+      "return_date": "2023-02-25T00:00:00.000Z",
+      "price_per_person": 2000
+    },
+    {
+      "id": "15",
+      "name": "Peru: Machu Picchu Expedition",
+      "thumbnail_url": "https://images.unsplash.com/photo-1532996152552-eaffc4edfc1a?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "description": "Hike the Inca Trail and explore the ancient ruins of Machu Picchu.",
+      "departure_date": "2023-05-01T00:00:00.000Z",
+      "return_date": "2023-05-14T00:00:00.000Z",
+      "price_per_person": 1700
+    },
+    {
+      "id": "16",
+      "name": "Morocco: Desert and Medina",
+      "thumbnail_url": "https://images.unsplash.com/photo-1451245420434-8f0ce5b89693?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "description": "Discover the vibrant markets and stunning desert landscapes.",
+      "departure_date": "2023-06-10T00:00:00.000Z",
+      "return_date": "2023-06-20T00:00:00.000Z",
+      "price_per_person": 1600
+    },
+    {
+      "id": "17",
+      "name": "Canada: Rockies and Vancouver",
+      "thumbnail_url": "https://images.unsplash.com/photo-1536637706725-c96e8837df7d?q=80&w=2000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "description": "Explore the breathtaking landscapes of the Rocky Mountains and the vibrant city of Vancouver.",
+      "departure_date": "2023-07-05T00:00:00.000Z",
+      "return_date": "2023-07-15T00:00:00.000Z",
+      "price_per_person": 1900
+    },
+    {
+      "id": "18",
+      "name": "Thailand: Bangkok and Beaches",
+      "thumbnail_url": "https://images.unsplash.com/photo-1494949360228-4e9bde560065?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "description": "Immerse yourself in the vibrant culture and beautiful beaches of Thailand.",
+      "departure_date": "2023-01-10T00:00:00.000Z",
+      "return_date": "2023-01-25T00:00:00.000Z",
+      "price_per_person": 1300
+    },
+    {
+      "id": "19",
+      "name": "Egypt: Pyramids and Nile Cruise",
+      "thumbnail_url": "https://images.unsplash.com/photo-1544815521-80841127c00f?q=80&w=2109&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "description": "Explore the ancient pyramids and cruise down the Nile River.",
+      "departure_date": "2023-11-10T00:00:00.000Z",
+      "return_date": "2023-11-20T00:00:00.000Z",
+      "price_per_person": 1800
+    },
+    {
+      "id": "20",
+      "name": "New Zealand: Adventure and Nature",
+      "thumbnail_url": "https://images.unsplash.com/photo-1531804159968-24716780d214?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "description": "Experience the stunning natural landscapes and adventurous activities in New Zealand.",
+      "departure_date": "2023-09-01T00:00:00.000Z",
+      "return_date": "2023-09-15T00:00:00.000Z",
+      "price_per_person": 2100
+    }
+  ],
+  "bookings": [
+    {
+      "id": "1",
+      "travel_id": "1",
+      "customer": {
+        "id": "1",
+        "first_name": "John",
+        "last_name": "Doe",
+        "email": "john.doe@mail.com",
+        "phone_number": "123456789",
+        "age": 30,
+        "gender": "man",
+        "profile_picture": "https://randomuser.me/api/portraits/men/2.jpg"
+      },
+      "payment_method": "Revolut",
+      "internal_notes": "No allergies"
+    },
+    {
+      "id": "2",
+      "travel_id": "2",
+      "customer": {
+        "id": "8",
+        "first_name": "Laura",
+        "last_name": "Garcia",
+        "email": "laura.garcia@mail.com",
+        "phone_number": "789123456",
+        "age": 31,
+        "gender": "woman",
+        "profile_picture": "https://randomuser.me/api/portraits/women/5.jpg"
+      },
+      "payment_method": "Paypal"
+    },
+    {
+      "id": "3",
+      "travel_id": "1",
+      "customer": {
+        "id": "2",
+        "first_name": "Jane",
+        "last_name": "Smith",
+        "email": "jane.smith@mail.com",
+        "phone_number": "987654321",
+        "age": 28,
+        "gender": "woman",
+        "profile_picture": "https://randomuser.me/api/portraits/women/2.jpg"
+      },
+      "payment_method": "Revolut",
+      "internal_notes": "Vegetarian"
+    },
+    {
+      "id": "4",
+      "travel_id": "7",
+      "customer": {
+        "id": "4",
+        "first_name": "Emily",
+        "last_name": "Davis",
+        "email": "emily.davis@mail.com",
+        "phone_number": "345678912",
+        "age": 32,
+        "gender": "woman",
+        "profile_picture": "https://randomuser.me/api/portraits/women/3.jpg"
+      },
+      "payment_method": "Credit transfer"
+    },
+    {
+      "id": "5",
+      "travel_id": "5",
+      "customer": {
+        "id": "9",
+        "first_name": "James",
+        "last_name": "Rodriguez",
+        "email": "james.rodriguez@mail.com",
+        "phone_number": "891234567",
+        "age": 36,
+        "gender": "man",
+        "profile_picture": "https://randomuser.me/api/portraits/men/6.jpg"
+      },
+      "payment_method": "Paypal"
+    },
+    {
+      "id": "6",
+      "travel_id": "2",
+      "customer": {
+        "id": "10",
+        "first_name": "Olivia",
+        "last_name": "Hernandez",
+        "email": "olivia.hernandez@mail.com",
+        "phone_number": "912345678",
+        "age": 26,
+        "gender": "woman",
+        "profile_picture": "https://randomuser.me/api/portraits/women/6.jpg"
+      },
+      "payment_method": "Credit transfer"
+    },
+    {
+      "id": "7",
+      "travel_id": "7",
+      "customer": {
+        "id": "11",
+        "first_name": "Liam",
+        "last_name": "Wilson",
+        "email": "liam.wilson@mail.com",
+        "phone_number": "913456789",
+        "age": 28,
+        "gender": "man",
+        "profile_picture": "https://randomuser.me/api/portraits/men/11.jpg"
+      },
+      "payment_method": "Paypal"
+    },
+    {
+      "id": "8",
+      "travel_id": "10",
+      "customer": {
+        "id": "12",
+        "first_name": "Emma",
+        "last_name": "Johnson",
+        "email": "emma.johnson@mail.com",
+        "phone_number": "914567890",
+        "age": 22,
+        "gender": "woman",
+        "profile_picture": "https://randomuser.me/api/portraits/women/12.jpg"
+      },
+      "payment_method": "Revolut"
+    },
+    {
+      "id": "9",
+      "travel_id": "1",
+      "customer": {
+        "id": "13",
+        "first_name": "Noah",
+        "last_name": "Brown",
+        "email": "noah.brown@mail.com",
+        "phone_number": "915678901",
+        "age": 30,
+        "gender": "man",
+        "profile_picture": "https://randomuser.me/api/portraits/men/13.jpg"
+      },
+      "payment_method": "Revolut"
+    },
+    {
+      "id": "10",
+      "travel_id": "4",
+      "customer": {
+        "id": "14",
+        "first_name": "Sophia",
+        "last_name": "Jones",
+        "email": "sophia.jones@mail.com",
+        "phone_number": "916789012",
+        "age": 24,
+        "gender": "woman",
+        "profile_picture": "https://randomuser.me/api/portraits/women/14.jpg"
+      },
+      "payment_method": "Paypal"
+    },
+    {
+      "id": "11",
+      "travel_id": "12",
+      "customer": {
+        "id": "15",
+        "first_name": "James",
+        "last_name": "Garcia",
+        "email": "james.garcia@mail.com",
+        "phone_number": "917890123",
+        "age": 27,
+        "gender": "man",
+        "profile_picture": "https://randomuser.me/api/portraits/men/15.jpg"
+      },
+      "payment_method": "Revolut"
+    },
+    {
+      "id": "12",
+      "travel_id": "14",
+      "customer": {
+        "id": "16",
+        "first_name": "Isabella",
+        "last_name": "Martinez",
+        "email": "isabella.martinez@mail.com",
+        "phone_number": "918901234",
+        "age": 23,
+        "gender": "woman",
+        "profile_picture": "https://randomuser.me/api/portraits/women/16.jpg"
+      },
+      "payment_method": "Credit transfer"
+    },
+    {
+      "id": "13",
+      "travel_id": "15",
+      "customer": {
+        "id": "17",
+        "first_name": "Benjamin",
+        "last_name": "Rodriguez",
+        "email": "benjamin.rodriguez@mail.com",
+        "phone_number": "919012345",
+        "age": 29,
+        "gender": "man",
+        "profile_picture": "https://randomuser.me/api/portraits/men/17.jpg"
+      },
+      "payment_method": "Credit transfer"
+    },
+    {
+      "id": "14",
+      "travel_id": "10",
+      "customer": {
+        "id": "18",
+        "first_name": "Mia",
+        "last_name": "Miller",
+        "email": "mia.miller@mail.com",
+        "phone_number": "920123456",
+        "age": 25,
+        "gender": "woman",
+        "profile_picture": "https://randomuser.me/api/portraits/women/18.jpg"
+      },
+      "payment_method": "Revolut"
+    },
+    {
+      "id": "15",
+      "travel_id": "15",
+      "customer": {
+        "id": "19",
+        "first_name": "Elijah",
+        "last_name": "Davis",
+        "email": "elijah.davis@mail.com",
+        "phone_number": "921234567",
+        "age": 31,
+        "gender": "man",
+        "profile_picture": "https://randomuser.me/api/portraits/men/19.jpg"
+      },
+      "payment_method": "Credit transfer",
+      "internal_notes": ""
+    },
+    {
+      "id": "5620",
+      "travel_id": "4",
+      "customer": {
+        "id": "3864",
+        "first_name": "test",
+        "last_name": "case",
+        "email": "mail@mail.com",
+        "phone_number": "2312",
+        "age": 12,
+        "gender": "prefer not to say",
+        "profile_picture": "https://randomuser.me/api/portraits/men/58.jpg"
+      },
+      "payment_method": "Revolut",
+      "internal_notes": "qwe"
+    }
+  ]
+}

@@ -5,7 +5,7 @@
       <UIButton icon="plus" @click="handleClickAddTravel"> Create </UIButton>
     </UITableActions>
 
-    <TravelsTable :travels @row-click="handleClickRow" />
+    <TravelsTable :travels="searchResults" @row-click="handleClickRow" />
 
     <CreateTravelModal
       v-model:open="isCreateModalOpen"
@@ -23,11 +23,11 @@
 import { type Travel } from "~/entities/travel/types";
 import UIButton from "~/components/ui/UIButton.vue";
 import UITableActions from "~/components/ui/table/UITableActions.vue";
-import { TravelRepository } from "~/respositories/TravelRepository";
 import TravelsTable from "~/components/travel/TravelsTable.vue";
 import CreateTravelModal from "~/components/travel/CreateTravelModal.vue";
 import EditTravelModal from "~/components/travel/EditTravelModal.vue";
 import UISearchInput from "~/components/ui/UISearchInput.vue";
+import { useTravelsStore } from "~/store/travelsStore";
 
 definePageMeta({
   title: "Travels",
@@ -37,32 +37,29 @@ definePageMeta({
 // ====================================================
 // STATE & DATA
 // ====================================================
-const travelRepository = new TravelRepository();
-const travels = ref<Travel[]>([]);
+const travelsStore = useTravelsStore();
+const { travels } = storeToRefs(travelsStore);
 const searchValue = ref("");
+const searchResults = ref<Travel[]>([]);
 const clickedTravel = ref<Travel | undefined>(undefined);
 const isEditModalOpen = ref(false);
 const isCreateModalOpen = ref(false);
 
 // ====================================================
-// LIFECYCLE
-// ====================================================
-onMounted(() => {
-  travels.value = travelRepository.getAll();
-});
-
-// ====================================================
 // WATCHERS
 // ====================================================
+watchEffect(() => {
+  searchResults.value = Array.from(travels.value);
+});
+
 watch(searchValue, (value) => {
   // reset the table if the search value is empty
   if (!value) {
-    travels.value = travelRepository.getAll();
+    searchResults.value = Array.from(travels.value);
     return;
   }
 
-  const allTravels = travelRepository.getAll();
-  travels.value = allTravels.filter((t) =>
+  searchResults.value = travels.value.filter((t) =>
     t.name.toLowerCase().includes(value.toLowerCase()),
   );
 });
@@ -80,8 +77,5 @@ function handleClickAddTravel() {
   isCreateModalOpen.value = true;
 }
 
-function handleClickSubmit() {
-  // refresh the table
-  travels.value = travelRepository.getAll();
-}
+function handleClickSubmit() {}
 </script>

@@ -100,12 +100,11 @@ import UIButton from "~/components/ui/UIButton.vue";
 import UILabel from "~/components/ui/UILabel.vue";
 import UIInput from "~/components/ui/inputs/UIInput.vue";
 import type { Travel } from "~/entities/travel/types";
-import { TravelRepository } from "~/respositories/TravelRepository";
 import { formatDateToYYYYMMDD } from "~/utils/date";
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import DeleteSection from "~/components/DeleteSection.vue";
 import UIConfirmationModal from "~/components/ui/UIConfirmationModal.vue";
-import { BookingRepository } from "~/respositories/BookingRepository";
+import { useTravelsStore } from "~/store/travelsStore";
+import { useBookingsStore } from "~/store/bookingsStore";
 
 type Props = {
   travel: Travel | undefined;
@@ -121,11 +120,17 @@ const emits = defineEmits<Emits>();
 // ====================================================
 // STATE & DATA
 // ====================================================
-const travelRepository = new TravelRepository();
-const bookingRepository = new BookingRepository();
+const travelsStore = useTravelsStore();
+const bookingsStore = useBookingsStore();
+const { bookings } = storeToRefs(bookingsStore);
 const thumbnailUrl = ref("");
 const travelForm = ref<HTMLFormElement | null>(null);
 const isDeleteModalOpen = ref(false);
+const open = defineModel<boolean>("open", {
+  default: false,
+  required: true,
+});
+
 const departureDate = computed(() => {
   return props.travel ? formatDateToYYYYMMDD(props.travel.departureDate) : "";
 });
@@ -136,10 +141,6 @@ const pricePerPerson = computed(() => {
   return props.travel ? props.travel.pricePerPerson.toString() : "";
 });
 
-const open = defineModel<boolean>("open", {
-  default: false,
-  required: true,
-});
 // ====================================================
 // LIFECYCLE
 // ====================================================
@@ -174,7 +175,7 @@ function handleSubmit() {
     averageRating: parseFloat(formData.get("rating") as string),
   };
 
-  travelRepository.update(updatedTravel);
+  travelsStore.update(updatedTravel.id, updatedTravel);
 
   emits("submit");
 }
@@ -182,11 +183,11 @@ function handleSubmit() {
 function handleClickConfirmDelete() {
   if (!props.travel) return;
 
-  travelRepository.delete(props.travel.id);
+  travelsStore.delete(props.travel.id);
   // also delete all bookings associated with this travel
-  bookingRepository.getAll().forEach((booking) => {
+  bookings.value.forEach((booking) => {
     if (booking.travel.id === props.travel!.id) {
-      bookingRepository.delete(booking.id);
+      bookingsStore.delete(booking.id);
     }
   });
 

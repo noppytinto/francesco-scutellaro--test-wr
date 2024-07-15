@@ -22,5 +22,8 @@ export default defineNuxtConfig({
     provider: isDev ? "" : "netlify",
     domains: ["https://images.unsplash.com", "https://randomuser.me"],
   },
-  modules: ["@nuxt/image"],
+  modules: ["@nuxt/image", "@pinia/nuxt"],
+  runtimeConfig: {
+    apiBaseUrl: process.env.API_BASE_URL,
+  },
 });

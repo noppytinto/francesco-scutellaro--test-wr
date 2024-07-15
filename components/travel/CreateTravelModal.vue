@@ -66,8 +66,8 @@ import UIButton from "~/components/ui/UIButton.vue";
 import UILabel from "~/components/ui/UILabel.vue";
 import UIInput from "~/components/ui/inputs/UIInput.vue";
 import type { Travel } from "~/entities/travel/types";
-import { TravelRepository } from "~/respositories/TravelRepository";
 import { getRandomNumber } from "~/utils/number";
+import { useTravelsStore } from "~/store/travelsStore";
 
 type Emits = {
   (event: "submit"): void;
@@ -78,10 +78,9 @@ const emits = defineEmits<Emits>();
 // ====================================================
 // STATE & DATA
 // ====================================================
-const travelRepository = new TravelRepository();
+const travelsStore = useTravelsStore();
 const thumbnailUrl = ref("");
 const travelForm = ref<HTMLFormElement | null>(null);
-
 const open = defineModel<boolean>("open", {
   default: false,
   required: true,
@@ -107,7 +106,7 @@ function handleSubmit() {
     averageRating: Number(formData.get("rating")),
   };
 
-  travelRepository.create(newTravel);
+  travelsStore.create(newTravel);
 
   emits("submit");
 }

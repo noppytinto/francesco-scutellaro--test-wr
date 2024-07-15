@@ -1,63 +1,41 @@
 import type { APITravel, Travel } from "~/entities/travel/types";
-import {
-  getFromLocalStorage,
-  saveToLocalStorage,
-  STORAGE_KEYS,
-  type StorageKey,
-} from "~/utils/localStorage";
-import { getTravelsResponseData } from "~/server/mockedAPIData";
-import type { IRepository } from "~/respositories/IRepository";
+import type { IRepositoryAsync } from "~/respositories/IRepositoryAsync";
 
-export class TravelRepository implements IRepository<Travel> {
-  storageKey: StorageKey;
-
-  constructor() {
-    this.storageKey = STORAGE_KEYS.TRAVELS_DATA;
-  }
-
-  init() {
-    if (!getFromLocalStorage(this.storageKey)) {
-      saveToLocalStorage(this.storageKey, getTravelsResponseData());
-    }
-  }
-
-  getAll() {
-    const data = getFromLocalStorage<APITravel[]>(this.storageKey) || [];
+export class TravelRepository implements IRepositoryAsync<Travel> {
+  async getAll() {
+    const data = await $fetch<APITravel[]>("/api/travels");
     return data.map(parseToTravel);
   }
 
-  getById(id: string) {
-    const allData = getFromLocalStorage<APITravel[]>(this.storageKey) || [];
-    const parsedData = allData.map(parseToTravel);
-    const result = parsedData.find((d) => d.id === id);
-    return result || null;
+  async getById(id: string) {
+    const data = await $fetch<APITravel>(`/api/travels/${id}`);
+    return parseToTravel(data);
   }
 
-  create(value: Travel) {
+  async create(value: Travel) {
     const valueToWrite = writeToTravelAPI(value);
-    const allData = getFromLocalStorage<APITravel[]>(this.storageKey) || [];
-    allData.push(valueToWrite);
-    saveToLocalStorage(this.storageKey, allData);
+    const data = await $fetch<APITravel>("/api/travels", {
+      method: "POST",
+      body: valueToWrite,
+    });
+
+    return parseToTravel(data);
   }
 
-  update(value: Travel) {
-    const allData = getFromLocalStorage<APITravel[]>(this.storageKey) || [];
-    const index = allData.findIndex((d) => d.id === value.id);
+  async update(id: string, value: Travel) {
+    const valueToWrite = writeToTravelAPI(value);
+    const data = await $fetch<APITravel>(`/api/travels/${id}`, {
+      method: "PUT",
+      body: valueToWrite,
+    });
 
-    if (index !== -1) {
-      allData[index] = writeToTravelAPI(value);
-      saveToLocalStorage(this.storageKey, allData);
-    }
+    return parseToTravel(data);
   }
 
-  delete(id: string) {
-    const allData = getFromLocalStorage<APITravel[]>(this.storageKey) || [];
-    const index = allData.findIndex((d) => d.id === id);
-
-    if (index !== -1) {
-      allData.splice(index, 1);
-      saveToLocalStorage(this.storageKey, allData);
-    }
+  async delete(id: string) {
+    await $fetch(`/api/travels/${id}`, {
+      method: "DELETE",
+    });
   }
 }
 

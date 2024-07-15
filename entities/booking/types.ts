@@ -1,4 +1,4 @@
-import type { APITravel, Travel } from "~/entities/travel/types";
+import type { Travel } from "~/entities/travel/types";
 import type { APICustomer, Customer } from "~/entities/customer/types";
 
 export const PAYMENT_METHODS = {
@@ -12,7 +12,7 @@ export type PaymentMethod =
 
 export type APIBooking = {
   id: string;
-  travel: APITravel;
+  travel_id: string;
   customer: APICustomer;
   payment_method: PaymentMethod;
   internal_notes?: string;

@@ -9,8 +9,6 @@
         @keydown="handleKeyDown"
         @focus="handleFocus"
         @blur="handleBlur"
-        @keydown.down="handleArrowDown"
-        @keydown.up="handleArrowUp"
         @keydown.enter="handleEnter"
         @keydown.esc="handleEsc"
         class="text-my-neutral-900 w-full border-none bg-transparent px-3 py-2 focus:outline-none"
@@ -81,30 +79,10 @@ function handleInput() {
 }
 
 function handleKeyDown(event: KeyboardEvent) {
-  if (event.key === "ArrowDown") {
-    handleArrowDown();
-  } else if (event.key === "ArrowUp") {
-    handleArrowUp();
-  } else if (event.key === "Enter") {
+  if (event.key === "Enter") {
     handleEnter();
   } else if (event.key === "Escape") {
     handleEsc();
-  }
-}
-
-function handleArrowDown() {
-  if (highlightedIndex.value === filteredItems.value.length - 1) {
-    highlightedIndex.value = 0;
-  } else {
-    highlightedIndex.value++;
-  }
-}
-
-function handleArrowUp() {
-  if (highlightedIndex.value === 0) {
-    highlightedIndex.value = filteredItems.value.length - 1;
-  } else {
-    highlightedIndex.value--;
   }
 }
 
