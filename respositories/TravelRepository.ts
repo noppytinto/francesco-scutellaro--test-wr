@@ -1,41 +1,36 @@
 import type { APITravel, Travel } from "~/entities/travel/types";
 import type { IRepositoryAsync } from "~/respositories/IRepositoryAsync";
+import { apiService } from "~/services/apiService";
 
 export class TravelRepository implements IRepositoryAsync<Travel> {
   async getAll() {
-    const data = await $fetch<APITravel[]>("/api/travels");
+    const data = await apiService.get<APITravel[]>("/api/travels");
     return data.map(parseToTravel);
   }
 
   async getById(id: string) {
-    const data = await $fetch<APITravel>(`/api/travels/${id}`);
+    const data = await apiService.get<APITravel>(`/api/travels/${id}`);
     return parseToTravel(data);
   }
 
   async create(value: Travel) {
     const valueToWrite = writeToTravelAPI(value);
-    const data = await $fetch<APITravel>("/api/travels", {
-      method: "POST",
-      body: valueToWrite,
-    });
-
+    const data = await apiService.post<APITravel>("/api/travels", valueToWrite);
     return parseToTravel(data);
   }
 
   async update(id: string, value: Travel) {
     const valueToWrite = writeToTravelAPI(value);
-    const data = await $fetch<APITravel>(`/api/travels/${id}`, {
-      method: "PUT",
-      body: valueToWrite,
-    });
+    const data = await apiService.put<APITravel>(
+      `/api/travels/${id}`,
+      valueToWrite,
+    );
 
     return parseToTravel(data);
   }
 
   async delete(id: string) {
-    await $fetch(`/api/travels/${id}`, {
-      method: "DELETE",
-    });
+    await apiService.delete(`/api/travels/${id}`);
   }
 }
 

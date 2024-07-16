@@ -9,42 +9,41 @@ import {
   parseToCustomer,
   writeToCustomerAPI,
 } from "~/respositories/CustomerRepository";
+import { apiService } from "~/services/apiService";
 
 export class BookingRepository implements IRepositoryAsync<Booking> {
   async getAll() {
-    const data = await $fetch<APIBooking[]>("/api/bookings");
+    const data = await apiService.get<APIBooking[]>("/api/bookings");
     return await Promise.all(data.map(parseToBooking));
   }
 
   async getById(id: string) {
-    const data = await $fetch<APIBooking>(`/api/bookings/${id}`);
+    const data = await apiService.get<APIBooking>(`/api/bookings/${id}`);
     return parseToBooking(data);
   }
 
   async create(value: Booking) {
     const valueToWrite = writeToBookingAPI(value);
-    const data = await $fetch<APIBooking>("/api/bookings", {
-      method: "POST",
-      body: valueToWrite,
-    });
+    const data = await apiService.post<APIBooking>(
+      "/api/bookings",
+      valueToWrite,
+    );
 
     return parseToBooking(data);
   }
 
   async update(id: string, value: Booking) {
     const valueToWrite = writeToBookingAPI(value);
-    const data = await $fetch<APIBooking>(`/api/bookings/${id}`, {
-      method: "PUT",
-      body: valueToWrite,
-    });
+    const data = await apiService.put<APIBooking>(
+      `/api/bookings/${id}`,
+      valueToWrite,
+    );
 
     return parseToBooking(data);
   }
 
   async delete(id: string) {
-    await $fetch(`/api/bookings/${id}`, {
-      method: "DELETE",
-    });
+    await apiService.delete(`/api/bookings/${id}`);
   }
 }
 
